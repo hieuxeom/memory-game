@@ -1,0 +1,56 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Memories Game</title>
+
+		<!-- CDN fontawesome icon -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+			integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+
+		<!-- # CSS file -->
+		<link rel="stylesheet" href="./public/css/index.style.css" />
+		<link rel="stylesheet" href="./public/css/button.style.css" />
+
+		<!-- # CDN TailwindCSS and Config -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="./public/scripts/tailwindConfig.js"></script>
+	</head>
+	<body>
+		<div id="wrapper" class="w-screen h-screen bg-gray flex justify-center items-center">
+			<div id="homeContainer" class="w-[600px] h-screen bg-white relative">
+				<div class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-40%] w-full flex flex-col gap-4">
+					<div>
+						<h3 class="text-6xl w-full text-center text-primary my-4">Let's play</h3>
+						<h1 class="text-8xl w-full text-center text-secondary my-4">The Memory Game</h1>
+					</div>
+					<div class="w-full flex justify-center items-center gap-8">
+						<button button-data="4x4" class="difficult-size button-normal active text-white rounded-full">4 x 4</button>
+						<button button-data="4x5" class="difficult-size button-normal text-white rounded-full">4 x 5</button>
+					</div>
+					<div class="w-full flex justify-center items-center gap-8">
+						<button id="playGame" class="block w-24 h-24 rounded-full bg-primary">
+							<i class="fa-solid fa-play text-white text-4xl"></i>
+						</button>
+					</div>
+				</div>
+				<div class="absolute bottom-0 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+					<div class="w-full flex justify-center items-center">
+						<button class="button-normal text-white rounded-full">Ranking</button>
+					</div>
+				</div>
+				<div class="absolute bottom-0 right-4 translate-y-[-50%]">
+					<div class="w-full flex justify-center items-center">
+						<button class="w-14 h-14 bg-secondary text-white rounded-full"><i class="fa-solid fa-gear text-white text-2xl"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./public/scripts/home.play.js"></script>
+		<script src="./public/scripts/home.process.js"></script>
+	</body>
+</html>

@@ -1,0 +1,107 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Memories Game</title>
+
+		<!-- CDN fontawesome icon -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+			integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+
+		<!-- # CSS file -->
+		<link rel="stylesheet" href="./public/css/index.style.css" />
+		<link rel="stylesheet" href="./public/css/button.style.css" />
+		<link rel="stylesheet" href="./public/css/card.style.css" />
+
+		<!-- # CDN TailwindCSS and Config -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="./public/scripts/tailwindConfig.js"></script>
+	</head>
+	<body>
+		<div id="wrapper" class="w-screen h-screen bg-gray flex justify-center items-center">
+			<div id="gameContainer" class="w-[600px] h-screen px-8 py-2">
+				<header class="w-full flex justify-between items-center">
+					<button id="backToHome" class="button-normal active text-white rounded-full">Back</button>
+					<div id="timer" class="bg-secondary text-white px-8 py-2 rounded-full">
+						<div class="text-[1.5rem] flex gap-2">
+							<p>Time/</p>
+							<p id="minuteValue">00</p>
+							<p>:</p>
+							<p id="secondValue">00</p>
+						</div>
+					</div>
+				</header>
+				<main id="playContainer">
+					<div class="w-full grid grid-cols-4 gap-4 my-16 px-4">
+						<div class="card relative shadow-lg h-[180px]">
+							<div class="card-back">
+								<div class="absolute rounded-lg top-0 left-0 card-back w-full h-full bg-cardBack1"></div>
+								<div class="absolute rounded-md top-0 left-0 card-back w-full h-full bg-cardBack2 scale-[90%]"></div>
+								<div class="absolute rounded top-0 left-0 card-back w-full h-full bg-cardBack3 scale-[80%]"></div>
+							</div>
+							<div class="card-front">
+								<div class="absolute rounded-lg top-0 left-0 card-back w-full h-full bg-cardFront1"></div>
+								<div class="absolute rounded-md top-0 left-0 card-back w-full h-full bg-cardFront2 scale-[90%]"></div>
+								<div class="absolute rounded top-0 left-0 card-back w-full h-full bg-cardFront3 scale-[80%]"></div>
+								<div class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+									<i class="fa-solid fa-a text-4xl"></i>
+								</div>
+							</div>
+						</div>
+						<div class="card relative shadow-lg h-[180px]">
+							<div class="card-back">
+								<div class="absolute rounded-lg top-0 left-0 card-back w-full h-full bg-cardBack1"></div>
+								<div class="absolute rounded-md top-0 left-0 card-back w-full h-full bg-cardBack2 scale-[90%]"></div>
+								<div class="absolute rounded top-0 left-0 card-back w-full h-full bg-cardBack3 scale-[80%]"></div>
+							</div>
+							<div class="card-front">
+								<div class="absolute rounded-lg top-0 left-0 card-back w-full h-full bg-cardFront1"></div>
+								<div class="absolute rounded-md top-0 left-0 card-back w-full h-full bg-cardFront2 scale-[90%]"></div>
+								<div class="absolute rounded top-0 left-0 card-back w-full h-full bg-cardFront3 scale-[80%]"></div>
+								<div class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+									<i class="fa-solid fa-a text-4xl"></i>
+								</div>
+							</div>
+						</div>
+						<div class="card relative shadow-lg h-[180px]">
+							<div class="card-back">
+								<div class="absolute rounded-lg top-0 left-0 card-back w-full h-full bg-cardBack1"></div>
+								<div class="absolute rounded-md top-0 left-0 card-back w-full h-full bg-cardBack2 scale-[90%]"></div>
+								<div class="absolute rounded top-0 left-0 card-back w-full h-full bg-cardBack3 scale-[80%]"></div>
+							</div>
+							<div class="card-front">
+								<div class="absolute rounded-lg top-0 left-0 card-back w-full h-full bg-cardFront1"></div>
+								<div class="absolute rounded-md top-0 left-0 card-back w-full h-full bg-cardFront2 scale-[90%]"></div>
+								<div class="absolute rounded top-0 left-0 card-back w-full h-full bg-cardFront3 scale-[80%]"></div>
+								<div class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+									<i class="fa-solid fa-a text-4xl"></i>
+								</div>
+							</div>
+						</div>
+						<div class="card relative shadow-lg h-[180px]">
+							<div class="card-back">
+								<div class="absolute rounded-lg top-0 left-0 card-back w-full h-full bg-cardBack1"></div>
+								<div class="absolute rounded-md top-0 left-0 card-back w-full h-full bg-cardBack2 scale-[90%]"></div>
+								<div class="absolute rounded top-0 left-0 card-back w-full h-full bg-cardBack3 scale-[80%]"></div>
+							</div>
+							<div class="card-front">
+								<div class="absolute rounded-lg top-0 left-0 card-back w-full h-full bg-cardFront1"></div>
+								<div class="absolute rounded-md top-0 left-0 card-back w-full h-full bg-cardFront2 scale-[90%]"></div>
+								<div class="absolute rounded top-0 left-0 card-back w-full h-full bg-cardFront3 scale-[80%]"></div>
+								<div class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+									<i class="fa-solid fa-a text-4xl"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div>
+		<script src="./public/scripts/play.back.js"></script>
+		<script src="./public/scripts/play.process.js"></script>
+	</body>
+</html>

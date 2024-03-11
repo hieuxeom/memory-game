@@ -1,0 +1,37 @@
+@font-face {
+	font-family: "more_sugarregular";
+	src: url("../fonts/moresugar-regular-webfont.woff2") format("woff2"), url("../fonts/moresugar-regular-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root {
+	--primary: #f95c47;
+	--secondary: #182c45;
+	--sub: #3c2e3d;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "more_sugarregular";
+}
+
+#homeContainer {
+	background-image: url("../images/background.png");
+	background-repeat: none;
+	background-size: cover;
+}
+
+#gameContainer {
+	background-image: url("../images/gamebackground-1.png");
+	background-repeat: none;
+	background-size: cover;
+}
+
+#rankContainer {
+	background-image: url("../images/gamebackground-1.png");
+	background-repeat: none;
+	background-size: cover;
+}

@@ -1,0 +1,14 @@
+.card > .card-front {
+	display: none;
+}
+
+.card > .card-back {
+	display: block;
+}
+
+.card.open > .card-front {
+	display: block;
+}
+.card.open > .card-back {
+	display: none;
+}
