@@ -73,6 +73,10 @@ export const getUserData = (): IUser | undefined => {
     }
 }
 
+export const setUserData = (userData: IUser) => {
+    return localStorage.setItem("userData", JSON.stringify(userData))
+}
+
 export const getSearchParams = (key: string): string | undefined => {
     const searchParams = new URLSearchParams(window.location.search);
     return searchParams.get(key) ?? undefined
@@ -81,4 +85,12 @@ export const getUserId = (): string | undefined => {
     if (getUserData()) {
         return getUserData()?._id || undefined;
     }
+}
+
+export const setCookie = (name: string, value: string) => {
+    return document.cookie = `${name}=${value}; Path=/`
+}
+
+export const deleteCookie = (name: string) => {
+    return document.cookie = `${name}=; Max-Age=0`
 }
