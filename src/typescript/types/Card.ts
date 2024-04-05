@@ -7,8 +7,8 @@ export interface IPlayCard extends ICard {
     value: string;
 }
 
-export interface ICardTheme extends ICard {}
+export interface ICardThemeCard extends ICard {}
 
-export interface IGameTopic extends Omit<ICard, "backFace">{
+export interface IGameTopicCard extends Omit<ICard, "backFace">{
 }
 
