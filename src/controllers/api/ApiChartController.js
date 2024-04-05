@@ -1,4 +1,4 @@
-const gameThemeModel = require("../../models/GameThemeModel")
+const gameThemeModel = require("../../models/GameTopicModel")
 const cardThemeModel = require("../../models/CardThemeModel")
 const historyGameModel = require("../../models/HistoryGameModel")
 

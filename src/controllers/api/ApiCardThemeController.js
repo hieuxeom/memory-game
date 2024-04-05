@@ -1,6 +1,6 @@
 const cardThemeModel = require("../../models/CardThemeModel");
 const { Alphabets } = require("../../utils/alphabets");
-const gameThemeModel = require("../../models/GameThemeModel");
+const gameThemeModel = require("../../models/GameTopicModel");
 
 class ApiCardThemeController {
 

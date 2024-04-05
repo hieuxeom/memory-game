@@ -1,6 +1,6 @@
 const userModel = require("../../models/UserModel");
 const cardThemeModel = require("../../models/CardThemeModel")
-const gameThemeModel = require("../../models/GameThemeModel")
+const gameThemeModel = require("../../models/GameTopicModel")
 
 class ApiShopController {
     constructor() {

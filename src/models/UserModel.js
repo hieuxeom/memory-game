@@ -6,7 +6,7 @@ const ObjectId = Schema.ObjectId;
 const UserVipItems = new Schema(
     {
         cardThemes: { type: [], default: [] },
-        gameThemes: { type: [], default: [] },
+        gameTopics: { type: [], default: [] },
     }
 )
 
@@ -27,7 +27,7 @@ const UserSchema = new Schema(
         userVipItems: {
             type: UserVipItems, default: {
                 cardThemes: [],
-                gameThemes: []
+                gameTopics: []
             }
         }
     },

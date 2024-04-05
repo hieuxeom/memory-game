@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const router = express.Router();
 
-const apiGameTheme = require("../../controllers/api/ApiGameThemeController");
+const apiGameTheme = require("../../controllers/api/ApiGameTopicController");
 
 const gameThemeStorage = multer.diskStorage({
     destination: function (req, file, cb) {
