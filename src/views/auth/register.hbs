@@ -1,0 +1,28 @@
+<header class="w-full flex flex-col justify-center items-center gap-4">
+    <a href="/auth" class="button-small active text-white rounded-full">Back</a>
+    <div class="bg-white p-4 rounded-[1.25rem] shadow-2">
+        <h1 class="text-4xl text-center text-secondary">Let's create account to save your game</h1>
+    </div>
+</header>
+<main class="flex w-full h-full justify-center relative">
+    <form class="w-11/12 h-4/6 my-16 p-4 flex flex-col items-center gap-4 rounded-xl">
+        <div class="w-full">
+            <input type="text" name="uDisplayName" id="uDisplayName" placeholder="Display Name" required/>
+            <p id="uDisplayNameValid" class="hidden text-red-500">Please enter a valid display name</p>
+        </div>
+        <div class="w-full">
+            <input type="email" name="uEmail" id="uEmail" placeholder="Email" required/>
+            <p id="uEmailValid" class="hidden text-red-500">Please enter a valid email</p>
+        </div>
+        <div class="w-full">
+            <input type="password" name="uPassword" id="uPassword" required/>
+            <p id="uPasswordValid" class="hidden text-red-500">Please enter a valid password</p>
+        </div>
+        <div class="w-full">
+            <input type="password" name="uRePassword" id="uRePassword" required/>
+            <p id="uRePasswordValid" class="hidden text-red-500">Please enter a valid password</p>
+        </div>
+        <p id="showMessage" class="hidden text-red-500"></p>
+        <button class="button-normal hover:bg-primary text-white w-full rounded-full" id="submitRegister">Create account</button>
+    </form>
+</main>

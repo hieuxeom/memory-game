@@ -1,0 +1,26 @@
+{{> adminHeader title=title buttonBackRef=buttonBackRef}}
+<main class="flex justify-center w-full h-max relative">
+    <div class="w-11/12 h-4/6 my-16 p-4 flex flex-col gap-4 rounded-xl">
+        <div class="flex justify-end items-center gap-2">
+            <p class="text-secondary">View Mode:</p>
+            <a href="/admin/card-themes/all" class="filter-button bg-secondary hover:bg-primary text-white p-2 rounded-lg">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+            <a href="/admin/card-themes/all?filter=alphabets" class="filter-button bg-secondary hover:bg-primary text-white p-2 rounded-lg">
+                <i class="fa-solid fa-list-ul"></i>
+            </a>
+        </div>
+        <div class="text-3xl flex justify-between">
+            <div class="w-3/4">
+                <h3 class="text-left text-secondary-shadow">Theme Name</h3>
+            </div>
+            <div class="w-1/4 text-center">
+                <h3 class="text-secondary-shadow">Action</h3>
+            </div>
+        </div>
+        <div id="listThemesContainer" class="w-full h-[65vh] flex flex-col gap-4 overflow-y-scroll style-4">
+
+        </div>
+    </div>
+
+</main>

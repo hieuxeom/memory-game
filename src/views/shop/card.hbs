@@ -1,0 +1,48 @@
+{{>siteHeader title=title buttonBackRef=buttonBackRef}}
+<div class="absolute top-4 right-8">
+    <div class="bg-white shadow-2 rounded-xl px-4 py-2">
+        <div class="flex items-center justify-center text-primary text-2xl gap-2">
+            <span class="noto--coin"></span>
+            <h4 id="userCoins">500</h4>
+        </div>
+    </div>
+</div>
+<main class="relative flex justify-center w-full h-4/5">
+
+    <div class="w-full h-4/6 mt-16 p-4 flex flex-col gap-4 rounded-xl">
+        <header class="btn-rank-group w-full flex justify-center items-center gap-12">
+            <button data-tab="card-themes" class="tab-button inactive">Card Themes</button>
+            <button data-tab="game-themes" class="tab-button inactive">Game Themes</button>
+        </header>
+        <div class="w-full flex justify-end gap-2">
+            <button data-sort="asc" class="sort-button p-2 rounded-lg text-white"><i class="fa-solid
+            fa-arrow-up-wide-short"></i></button>
+            <button data-sort="desc" class="sort-button p-2 rounded-lg text-white"><i class="fa-solid
+            fa-arrow-down-wide-short"></i></button>
+
+        </div>
+        <main id="listCards" class="w-full h-full grid grid-cols-4 gap-2 overflow-y-scroll style-4">
+
+        </main>
+    </div>
+    <section id="vipDetails" class="h-max w-full absolute -bottom-16 left-0 bg-white px-8 py-4">
+        <div class="flex gap-4 max-h-[170px]">
+            <div class="w-max">
+                <img src="" class="h-full back-face" alt=""/>
+            </div>
+            <div class="w-max">
+                <img src="" class="h-full front-face" alt=""/>
+            </div>
+            <div class="w-full flex flex-col items-center justify-center gap-4">
+                <div class="flex items-center justify-center text-header-shadow text-4xl gap-2">
+                    <span class="noto--coin"></span>
+                    <h4 class="price">-</h4>
+                </div>
+                <div>
+                    <button data-price="" data-id="" id="buyButton" class="button-small rounded-xl text-white">Buy</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</main>

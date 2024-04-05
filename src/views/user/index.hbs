@@ -1,0 +1,91 @@
+<header class="w-full flex flex-col justify-center items-center gap-4">
+    <a href="/" class="button-small active text-white rounded-full">Back</a>
+</header>
+<main class="flex flex-col w-full mt-12 items-center gap-4">
+    <section id="userInfo" class="flex flex-col justify-center items-center gap-2">
+        <div class="w-32 h-32 rounded-full overflow-hidden shadow-1">
+            <img
+                id="userAvatar"
+                class="w-full h-full"
+                src=""
+                alt=""
+            />
+        </div>
+        <div class="w-full">
+            <h3 id="displayName" class="text-3xl">Username</h3>
+        </div>
+    </section>
+    <section id="gamePlayAnalytics" class="w-full">
+        <div class="w-full grid grid-cols-3 gap-4">
+            <div class="data-box flex flex-col justify-center items-center bg-white shadow-2 rounded-xl py-2">
+                <h4 id="gamePlayed" class="text-3xl">
+                    -
+                </h4>
+                <p>
+                    Games Played
+                </p>
+            </div>
+            <div class="data-box flex flex-col justify-center items-center bg-white shadow-2 rounded-xl py-2">
+                <h4 id="highestScore" class="text-3xl">
+                    -
+                </h4>
+                <p>
+                    Highest Score
+                </p>
+            </div>
+            <div class="data-box flex flex-col justify-center items-center bg-white shadow-2 rounded-xl py-2">
+                <h4 id="averageScore" class="text-3xl">
+                    -
+                </h4>
+                <p>
+                    Average Score
+                </p>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section id="additionalInformation" class="w-full flex flex-col gap-4">
+        <div class="w-full flex flex-col gap-4">
+            <div class="flex justify-between items-center w-full bg-white rounded-xl shadow-2 gap-4 py-2 px-4 ">
+                <div class="flex gap-2 items-center">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>Email</p>
+
+                </div>
+                <p id="email">-</p>
+            </div>
+        </div>
+        <div class="w-full flex flex-col gap-4">
+            <div class="flex justify-between items-center w-full bg-white rounded-xl shadow-2 gap-4 py-2 px-4">
+                <div class="flex gap-2 items-center">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>Most Played Size</p>
+                </div>
+                <p id="mostPlayedSize">-</p>
+            </div>
+        </div>
+        <div class="w-full flex flex-col gap-4">
+            <div class="flex justify-between items-center w-full bg-white rounded-xl shadow-2 gap-4 py-2 px-4">
+                <div class="flex gap-2 items-center">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>Most Played Time</p>
+                </div>
+                <p id="mostPlayedTime">-</p>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section class="w-full">
+        <div class="w-full flex flex-col gap-4">
+            <a href="/user/history" class="flex items-center w-full bg-white rounded-xl shadow-2 gap-4 py-2 px-4">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <p>Game History</p>
+            </a>
+        </div>
+    </section>
+    <section id="signOut" class="w-full flex justify-center gap-4">
+        <a id="changePassword" href="user/change-pwd" class="button-normal text-white rounded-full">Change Password</a>
+        <button id="signOutButton" class="button-normal text-white rounded-full">SignOut</button>
+    </section>
+
+</main>

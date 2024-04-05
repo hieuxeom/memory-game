@@ -1,0 +1,52 @@
+{{> adminHeader title=title buttonBackRef=buttonBackRef}}
+<main class="flex justify-center w-full h-max relative">
+    <form
+        id="formContainer"
+        class="w-11/12 h-[80vh] mt-16 p-4 flex flex-col gap-4 rounded-xl overflow-y-scroll style-4"
+    >
+        <div class="form-row flex flex-col gap-1 w-full">
+            <label for="themeName">Theme Name</label>
+            <input type="text" id="themeName" name="themeName"/>
+        </div>
+        <div class="form-row flex flex-col gap-1 w-full">
+            <label for="themeThumbnail">Theme Thumbnail</label>
+            <input type="file" id="themeThumbnail" name="themeThumbnail"/>
+        </div>
+        <div class="form-row flex flex-coll gap-1 w-full">
+            <div class="w-1/2 form-row flex flex-row items-center justify-start">
+                <input type="checkbox" name="isVip" id="isVip">
+                <label for="isVip">Is Vip Item?</label>
+            </div>
+            <div class="w-1/2 form-row">
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price" disabled>
+            </div>
+        </div>
+        <div class="text-2xl flex flex-col gap-4">
+            <label for="themeData">Theme Data</label>
+            <div class="flex gap-4 text-2xl">
+                <p>Type: </p>
+                <div>
+                    <input type="radio" name="themeDataType" value="icon" checked/>
+                    <label for="themeDataType">Icon</label>
+                </div>
+                <div>
+                    <input type="radio" name="themeDataType" value="image"/>
+                    <label for="themeDataType">Image</label>
+                </div>
+            </div>
+            <div class="form-row flex flex-col gap-1 w-full">
+				<textarea
+                    class="text-2xl px-4 py-2 style-4"
+                    rows="10"
+                    id="themeData"
+                    name="themeData"
+                    placeholder='Follow format: "icon value - data value" and one data/row'
+                ></textarea>
+            </div>
+        </div>
+        <div class="form-row">
+            <input id="submitButton" type="submit" value="Submit" class="text-2xl bg-primary text-white px-8 py-2 rounded-full w-full"/>
+        </div>
+    </form>
+</main>

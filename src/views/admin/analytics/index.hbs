@@ -1,0 +1,45 @@
+{{> adminHeader title=title buttonBackRef=buttonBackRef}}
+
+<main class="flex justify-center w-full h-[90vh] overflow-hidden relative">
+    <div class="w-11/12  my-16 p-4 flex flex-col gap-4 rounded-xl overflow-y-scroll style-4">
+        <div class="w-full flex flex-col justify-center items-center gap-4">
+            <header>
+                <h3 class="text-3xl text-primary-shadow">Top Game Themes</h3>
+            </header>
+            <main class="w-full">
+                <canvas class="chart" id="topGameTheme"></canvas>
+            </main>
+        </div>
+        <hr class="hr">
+        <div class="w-full flex flex-col justify-center items-center gap-4">
+            <header>
+                <h3 class="text-3xl text-primary-shadow">Top Card Themes</h3>
+            </header>
+            <main class="w-full">
+                <canvas class="chart" id="topCardTheme"></canvas>
+            </main>
+        </div>
+        <hr class="hr">
+        <div class="w-full flex flex-col justify-center items-center gap-4">
+            <header>
+                <h3 class="text-3xl text-primary-shadow">Top Game Sizes</h3>
+            </header>
+            <main class="w-full">
+                <canvas class="chart" id="topGameSize"></canvas>
+            </main>
+        </div>
+        <hr class="hr">
+        <div class="w-full flex flex-col justify-center items-center gap-4">
+            <header>
+                <h3 class="text-3xl text-primary-shadow">Top Game Times</h3>
+            </header>
+            <main class="w-full">
+                <canvas class="chart" id="topGameTime"></canvas>
+            </main>
+        </div>
+        <hr class="hr">
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0 "></script>

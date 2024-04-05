@@ -1,0 +1,78 @@
+{{>siteHeader title=title buttonBackRef=buttonBackRef}}
+<div class="absolute top-4 right-8">
+    <div class="bg-white shadow-2 rounded-xl px-4 py-2">
+        <div class="flex items-center justify-center text-primary text-2xl gap-2">
+            <span class="noto--coin"></span>
+            <h4 id="userCoins">500</h4>
+        </div>
+    </div>
+</div>
+<main class="relative flex justify-center w-full h-4/5">
+    <div class="w-full h-3/5 mt-16 p-4 flex flex-col gap-4 rounded-xl">
+        <header class="btn-rank-group w-full flex justify-center items-center gap-12">
+            <button data-tab="card-themes" class="tab-button inactive">Card Themes</button>
+            <button data-tab="game-themes" class="tab-button inactive">Game Themes</button>
+        </header>
+        <main id="listCards" class="w-full h-full grid grid-cols-4 gap-2 overflow-y-scroll style-4">
+
+        </main>
+    </div>
+    <section id="vipDetails" class="h-2/5 w-full absolute -bottom-16 left-0 bg-white px-8 py-4">
+        <div class="w-full flex items-center gap-4 ">
+            <div id="themeDataContainer" class="w-4/5 h-[300px] p-2 grid grid-cols-3 gap-4 overflow-y-scroll style-4">
+                <div data-value="${this.getValue()}"
+                     class="card open relative bg-transparent shadow-lg h-[170px] rounded-lg overflow-hidden">
+                    <div class="bg-transparent card-front w-full h-full">
+                        <div class="bg-transparent">
+                            <img src="/images/themepacks/1710352493960.png" class="w-full h-full" alt=""/>
+                        </div>
+                        <div class="bg-transparent absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+                            <i class="fa-solid fa-cube text-4xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <div data-value="${this.getValue()}"
+                     class="card open relative bg-transparent shadow-lg h-[170px] rounded-lg overflow-hidden">
+                    <div class="bg-transparent card-front w-full h-full">
+                        <div class="bg-transparent">
+                            <img src="/images/themepacks/1710352493960.png" class="w-full h-full" alt=""/>
+                        </div>
+                        <div class="bg-transparent absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+                            <i class="fa-solid fa-cube text-4xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <div data-value="${this.getValue()}"
+                     class="card open relative bg-transparent shadow-lg h-[170px] rounded-lg overflow-hidden">
+                    <div class="bg-transparent card-front w-full h-full">
+                        <div class="bg-transparent">
+                            <img src="/images/themepacks/1710352493960.png" class="w-full h-full" alt=""/>
+                        </div>
+                        <div class="bg-transparent absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+                            <i class="fa-solid fa-cube text-4xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <div data-value="${this.getValue()}"
+                     class="card open relative bg-transparent shadow-lg h-[170px] rounded-lg overflow-hidden">
+                    <div class="bg-transparent card-front w-full h-full">
+                        <div class="bg-transparent">
+                            <img src="/images/themepacks/1710352493960.png" class="w-full h-full" alt=""/>
+                        </div>
+                        <div class="bg-transparent absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+                            <i class="fa-solid fa-cube text-4xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-1/5 flex flex-col gap-2">
+                <div class="flex flex-col items-center justify-center text-header-shadow text-4xl gap-2">
+                    <span class="noto--coin"></span>
+                    <h4 class="price">-</h4>
+                </div>
+                <button data-price="" data-id="" id="buyButton" class="button-small rounded-xl text-white">Buy</button>
+            </div>
+        </div>
+
+    </section>
+</main>

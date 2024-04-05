@@ -1,0 +1,38 @@
+{{> adminHeader title=title buttonBackRef=buttonBackRef}}
+<main class="flex justify-center w-full h-max relative">
+    <div class="w-11/12 h-4/6 my-16 p-4 grid grid-cols-2 gap-4 rounded-xl">
+        <a
+            href="/admin/card-themes"
+            class="block bg-secondary text-white w-full flex flex-col justify-center items-center gap-2 p-4 rounded-xl cursor-pointer"
+        >
+            <div class="text-4xl">
+                <i class="fa-solid fa-palette"></i>
+            </div>
+            <div>
+                <p class="text-xl">Card Themes</p>
+            </div>
+        </a>
+
+        <a
+            href="/admin/game-themes"
+            class="block bg-secondary text-white w-full flex flex-col justify-center items-center gap-2 p-4 rounded-xl cursor-pointer"
+        >
+            <div class="text-4xl">
+                <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <div>
+                <p class="text-xl">Game Themes</p>
+            </div>
+        </a>
+        <a href="/admin/analytics"
+           class="block bg-secondary text-white w-full flex flex-col justify-center items-center gap-2 p-4 rounded-xl cursor-pointer"
+        >
+            <div class="text-4xl">
+                <i class="fa-solid fa-chart-simple"></i>
+            </div>
+            <div>
+                <p class="text-xl">Game Analytics</p>
+            </div>
+        </a>
+    </div>
+</main>

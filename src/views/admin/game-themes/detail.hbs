@@ -1,0 +1,20 @@
+{{> adminHeader title=title buttonBackRef=buttonBackRef}}
+<main class="flex justify-center w-full h-max relative">
+	<div class="w-11/12 h-4/6 my-16 p-4 flex flex-col gap-4 rounded-xl">
+		<div class="text-2xl flex justify-between">
+			<div class="w-4/5">
+                <input type="hidden" id="gameThemeId" value="{{gameThemeId}}">
+				<h3 class="text-secondary text-left">Theme name: <span class="text-primary" id="themeNameDetail"></span></h3>
+				<h3 class="text-secondary text-left">Total items: <span class="text-primary" id="themeTotalItemsDetail"></span></h3>
+				<h3 class="text-secondary text-left">Played: <span class="text-primary" id="themePlayedDetail"></span></h3>
+			</div>
+            <div class="w-1/5">
+                <img class="w-full" id="themeThumbnail" src=""/>
+            </div>
+		</div>
+		<div id="listThemeDataContainer" class="style-4 w-full max-h-[550px] overflow-y-scroll gap-4 grid grid-cols-4 pr-2">
+
+		</div>
+	</div>
+
+</main>

@@ -1,6 +1,6 @@
-<header class="w-full flex justify-center items-center gap-4">
+<header class="relative w-full flex justify-center items-center gap-4">
     {{#if buttonBackRef}}
-        <a href="{{buttonBackRef}}" class="button-small active text-white rounded-full">Back</a>
+        <a href="{{buttonBackRef}}" class="absolute top-0 left-0 button-small active text-white rounded-full">Back</a>
     {{/if}}
-    <h1 class="text-4xl text-secondary">{{title}}</h1>
+    <h1 class="w-full text-4xl text-secondary text-center">{{title}}</h1>
 </header>
