@@ -33,6 +33,28 @@ export const setGameTime = (time: string = "60") => {
     return localStorage.setItem("gameTime", time)
 }
 
+export const getCurrentGameTopic = () => {
+    if (!localStorage.getItem("currentGameTopic")) {
+        setGameTopic("65f9ddeeda69b11650c787d1")
+    }
+    return localStorage.getItem("currentGameTopic");
+}
+
+export const setGameTopic = (gameTopicId: string) => {
+    localStorage.setItem("currentGameTopic", gameTopicId)
+}
+
+export const getCurrentCardTheme = () => {
+    if (!localStorage.getItem("currentCardTheme")) {
+        setCardTheme("65f1e86d709b790e9f9ad85c")
+    }
+    return localStorage.getItem("currentCardTheme");
+}
+
+export const setCardTheme = (cardThemeId: string) => {
+    localStorage.setItem("currentCardTheme", cardThemeId)
+}
+
 const getDocumentCookies = (): Map<string, string> => {
     const cookies = document.cookie.split(";");
 
