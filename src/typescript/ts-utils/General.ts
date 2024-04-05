@@ -72,6 +72,11 @@ export const getUserData = (): IUser | undefined => {
         return undefined
     }
 }
+
+export const getSearchParams = (key: string): string | undefined => {
+    const searchParams = new URLSearchParams(window.location.search);
+    return searchParams.get(key) ?? undefined
+}
 export const getUserId = (): string | undefined => {
     if (getUserData()) {
         return getUserData()?._id || undefined;
