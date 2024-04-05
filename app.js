@@ -27,12 +27,16 @@ app.use(express.static(path.join(__dirname, "public")));
 const homeRouter = require("./src/routes/homeRouter");
 const gameRouter = require("./src/routes/gameRouter");
 const apiRouter = require("./src/routes/apiRouter");
-const inventoryRouter  = require("./src/routes/inventoryRouter");
+const inventoryRouter = require("./src/routes/inventoryRouter");
+const authRouter = require("./src/routes/authRouter");
+const profileRouter = require("./src/routes/profileRouter");
+
 app.use("/", homeRouter);
 app.use("/game", gameRouter);
 app.use("/api", apiRouter);
 app.use("/inventory", inventoryRouter);
-
+app.use("/auth", authRouter);
+app.use("/profile", profileRouter)
 
 app.use(function (req, res, next) {
     next(createError(404));
