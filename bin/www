@@ -3,10 +3,18 @@
 /**
  * Module dependencies.
  */
+require('dotenv').config()
 
 const app = require("../app");
 const debug = require("debug")("memory-game:server");
 const http = require("http");
+
+/**
+ * Connect to the mongodb server
+ */
+
+const mongoDb = require("../src/utils/mongodb.js")
+mongoDb.connect();
 
 /**
  * Get port from environment and store in Express.
