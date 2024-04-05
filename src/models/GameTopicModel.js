@@ -23,4 +23,4 @@ const GameSchemaSchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model("gameTheme", GameSchemaSchema);
+module.exports = mongoose.model("gameTopic", GameSchemaSchema);

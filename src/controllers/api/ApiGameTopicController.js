@@ -1,12 +1,12 @@
-const gameThemeModel = require("../../models/GameThemeModel");
+const gameTopicModel = require("../../models/GameTopicModel");
 const { Alphabets } = require("../../utils/alphabets");
 
-class ApiGameThemeController {
+class ApiGameTopicController {
 	async getAllGameThemes(req, res, next) {
 		const { filter, _s } = req.query;
 
 		if (_s) {
-			const gameThemeData = await gameThemeModel.find({
+			const gameThemeData = await gameTopicModel.find({
 				themeName: {
 					$regex: new RegExp(_s, "i"),
 				},
@@ -25,7 +25,7 @@ class ApiGameThemeController {
 			}
 		}
 
-		const gameThemeData = await gameThemeModel.find({});
+		const gameThemeData = await gameTopicModel.find({});
 
 		switch (filter) {
 			case "alphabets":
@@ -55,7 +55,7 @@ class ApiGameThemeController {
 	async getThemeById(req, res, next) {
 		const { gameThemeId: themeId } = req.params;
 
-		const gameThemeData = await gameThemeModel.findById(themeId);
+		const gameThemeData = await gameTopicModel.findById(themeId);
 		return res.status(200).json({
 			status: "success",
 			message: `Successfully received data of _id = ${gameThemeData._id}`,
@@ -64,7 +64,7 @@ class ApiGameThemeController {
 	}
 
 	async getThemesVip(req, res, next) {
-		const gameThemeData = await gameThemeModel.find({
+		const gameThemeData = await gameTopicModel.find({
 			isVip: true,
 		});
 
@@ -94,7 +94,7 @@ class ApiGameThemeController {
 				});
 			}
 
-			const newGameTheme = new gameThemeModel({
+			const newGameTheme = new gameTopicModel({
 				themeName: themeName,
 				themeData: JSON.parse(themeDataParsed),
 				rawData: rawData,
@@ -140,7 +140,7 @@ class ApiGameThemeController {
 				};
 			}
 
-			const editStatus = await gameThemeModel.findByIdAndUpdate(themeId, updateData);
+			const editStatus = await gameTopicModel.findByIdAndUpdate(themeId, updateData);
 
 			if (editStatus) {
 				return res.status(200).json({
@@ -169,7 +169,7 @@ class ApiGameThemeController {
 		try {
 			const { themeId } = req.params;
 
-			const deleteStatus = await gameThemeModel.findByIdAndUpdate(themeId, {
+			const deleteStatus = await gameTopicModel.findByIdAndUpdate(themeId, {
 				isDeleted: false,
 			});
 
@@ -201,7 +201,7 @@ class ApiGameThemeController {
 			const { themeId } = req.params;
 			console.log(themeId);
 
-			const deleteStatus = await gameThemeModel.findByIdAndUpdate(themeId, {
+			const deleteStatus = await gameTopicModel.findByIdAndUpdate(themeId, {
 				isDeleted: true,
 			});
 
@@ -232,7 +232,7 @@ class ApiGameThemeController {
 		try {
 			const { themeId } = req.params;
 
-			const deleteStatus = await gameThemeModel.findByIdAndDelete(themeId);
+			const deleteStatus = await gameTopicModel.findByIdAndDelete(themeId);
 
 			if (deleteStatus) {
 				return res.status(200).json({
@@ -258,4 +258,4 @@ class ApiGameThemeController {
 	}
 }
 
-module.exports = new ApiGameThemeController();
+module.exports = new ApiGameTopicController();
