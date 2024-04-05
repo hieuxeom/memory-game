@@ -81,10 +81,27 @@ export const getSearchParams = (key: string): string | undefined => {
     const searchParams = new URLSearchParams(window.location.search);
     return searchParams.get(key) ?? undefined
 }
+
 export const getUserId = (): string | undefined => {
     if (getUserData()) {
         return getUserData()?._id || undefined;
     }
+}
+
+export const getListVipCards = (): string[] => {
+    const userData = getUserData();
+    if (userData) {
+        return userData.userVipItems.cardThemes;
+    }
+    return []
+}
+
+export const getListVipGames = (): string[] => {
+    const userData = getUserData();
+    if (userData) {
+        return userData.userVipItems.gameTopics;
+    }
+    return []
 }
 
 export const setCookie = (name: string, value: string) => {
@@ -93,4 +110,8 @@ export const setCookie = (name: string, value: string) => {
 
 export const deleteCookie = (name: string) => {
     return document.cookie = `${name}=; Max-Age=0`
+}
+
+export const isOwned = (themeId: string, userInventory: string []): boolean => {
+    return userInventory.includes(themeId);
 }
