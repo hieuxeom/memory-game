@@ -11,6 +11,11 @@ export type ErrorDetails = {
     name: string,
     message: string
 }
+
+export type GameTopicData = {
+    icon: string,
+    value: string,
+}
 export interface IApiResponse {
     status: ResponseStatus,
     message: string,
@@ -32,10 +37,11 @@ export interface ICardTheme {
     updatedAt: string;
 }
 
+
 export interface IGameTopic {
     _id: string;
     themeName: string;
-    themeData: any;
+    themeData: GameTopicData[];
     rawData: string;
     themeThumbnail: string;
     type: string;
