@@ -1,11 +1,11 @@
 const createError = require("http-errors");
 const path = require("path");
-
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-
 const logger = require("morgan");
+const {loadDb, authentication, isExpired } = require("./src/utils/middleware")
+
 
 const app = express();
 
@@ -24,19 +24,24 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(loadDb);
+app.use(authentication);
+
 const homeRouter = require("./src/routes/homeRouter");
 const gameRouter = require("./src/routes/gameRouter");
 const apiRouter = require("./src/routes/apiRouter");
 const inventoryRouter = require("./src/routes/inventoryRouter");
 const authRouter = require("./src/routes/authRouter");
 const profileRouter = require("./src/routes/profileRouter");
+const shopRouter = require("./src/routes/shopRouter");
 
 app.use("/", homeRouter);
 app.use("/game", gameRouter);
 app.use("/api", apiRouter);
 app.use("/inventory", inventoryRouter);
 app.use("/auth", authRouter);
-app.use("/profile", profileRouter)
+app.use("/profile", isExpired(), profileRouter)
+app.use("/shop", shopRouter)
 
 app.use(function (req, res, next) {
     next(createError(404));
