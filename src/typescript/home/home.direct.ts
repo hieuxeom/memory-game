@@ -33,7 +33,7 @@ export const handeDirectButton = () => {
 
     if (playGame) {
         playGame.addEventListener("click", () => {
-            direct("/play")
+            direct("/game")
         })
     }
 }
