@@ -33,22 +33,22 @@ export const setGameTime = (time: string = "60") => {
     return localStorage.setItem("gameTime", time)
 }
 
-export const getCurrentGameTopic = () => {
+export const getCurrentGameTopic = (): string => {
     if (!localStorage.getItem("currentGameTopic")) {
         setGameTopic("65f9ddeeda69b11650c787d1")
     }
-    return localStorage.getItem("currentGameTopic");
+    return localStorage.getItem("currentGameTopic")!;
 }
 
 export const setGameTopic = (gameTopicId: string) => {
     localStorage.setItem("currentGameTopic", gameTopicId)
 }
 
-export const getCurrentCardTheme = () => {
+export const getCurrentCardTheme = (): string => {
     if (!localStorage.getItem("currentCardTheme")) {
         setCardTheme("65f1e86d709b790e9f9ad85c")
     }
-    return localStorage.getItem("currentCardTheme");
+    return localStorage.getItem("currentCardTheme")!;
 }
 
 export const setCardTheme = (cardThemeId: string) => {
@@ -86,6 +86,18 @@ export const getUserId = (): string | undefined => {
     if (getUserData()) {
         return getUserData()?._id || undefined;
     }
+}
+
+export const generateGuestId = () => {
+    return `guestPlayer${Date.now()}`
+}
+
+export const setLocalGuestId = (_id: string) => {
+    return localStorage.setItem("guestId", _id)
+}
+
+export const getLocalGuestId = (): string | undefined => {
+    return localStorage.getItem("guestId") || undefined
 }
 
 export const getListVipCards = (): string[] => {
