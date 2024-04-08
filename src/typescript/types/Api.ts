@@ -51,5 +51,4 @@ export interface IGameTopic {
     played: number;
     createAt: string;
     updatedAt: string;
-
 }
