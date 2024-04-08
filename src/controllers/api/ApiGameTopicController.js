@@ -2,28 +2,46 @@ const gameTopicModel = require("../../models/GameTopicModel");
 const { Alphabets } = require("../../utils/alphabets");
 
 class ApiGameTopicController {
-	async getAllGameThemes(req, res, next) {
+	constructor() {
+		this.getTopicsByQuery = this.getTopicsByQuery.bind(this);
+	}
+
+	getTopicsByQuery(req, res, next) {
 		const { filter, _s } = req.query;
 
 		if (_s) {
-			const gameThemeData = await gameTopicModel.find({
-				themeName: {
-					$regex: new RegExp(_s, "i"),
-				},
-			});
-			if (gameThemeData.length > 0) {
-				return res.status(200).json({
-					status: "success",
-					message: `Successfully received ${gameThemeData.length} game themes`,
-					data: gameThemeData,
-				});
-			} else {
-				return res.status(204).json({
-					status: "success",
-					message: "The request has been processed but there is no game themes to return",
-				});
-			}
+			return this.getTopicsBySearch(req, res, next);
+		} else if (filter) {
+			return this.getTopicsByFilter(req, res, next);
+		} else {
+			return this.getAllTopics(req, res, next);
 		}
+	}
+
+	async getTopicsBySearch(req, res, next) {
+		const { _s } = req.query;
+
+		const gameThemeData = await gameTopicModel.find({
+			themeName: {
+				$regex: new RegExp(_s, "i"),
+			},
+		});
+		if (gameThemeData.length > 0) {
+			return res.status(200).json({
+				status: "success",
+				message: `Successfully received ${gameThemeData.length} game themes`,
+				data: gameThemeData,
+			});
+		} else {
+			return res.status(204).json({
+				status: "success",
+				message: "The request has been processed but there is no game themes to return",
+			});
+		}
+	}
+
+	async getTopicsByFilter(req, res, next) {
+		const { filter } = req.query;
 
 		const gameThemeData = await gameTopicModel.find({});
 
@@ -41,6 +59,15 @@ class ApiGameTopicController {
 					status: "success",
 					message: `Successfully received ${gameThemeData.length} game themes sorted by A - Z`,
 					data: results,
+				});
+
+			case "deleted":
+				return res.status(200).json({
+					status: "success",
+					message: `Successfully received deleted game themes`,
+					data: await gameTopicModel.find({
+						isDeleted: true,
+					}),
 				});
 
 			default:
@@ -63,10 +90,29 @@ class ApiGameTopicController {
 		});
 	}
 
-	async getThemesVip(req, res, next) {
-		const gameThemeData = await gameTopicModel.find({
-			isVip: true,
+	async getAllTopics(req, res, next) {
+		const findOptions = {};
+		if (!req.headers.referer.includes("/admin")) {
+			findOptions.isDeleted = false;
+		}
+
+		return res.status(200).json({
+			status: "success",
+			message: `Successfully received game topics data`,
+			data: await gameTopicModel.find(findOptions),
 		});
+	}
+
+	async getThemesVip(req, res, next) {
+		const findOptions = {
+			isVip: true,
+		};
+
+		if (!req.headers.referer.includes("/admin")) {
+			findOptions.isDeleted = false;
+		}
+
+		const gameThemeData = await gameTopicModel.find(findOptions);
 
 		return res.status(200).json({
 			status: "success",
@@ -124,13 +170,14 @@ class ApiGameTopicController {
 	async editGameTheme(req, res, next) {
 		try {
 			console.log("vcl");
-			let { themeId, themeName, themeDataParsed, rawData, themeDataType } = req.body;
+			let { themeId, themeName, themeDataParsed, rawData, price, themeDataType } = req.body;
 
 			let updateData = {
 				themeName: themeName,
 				themeData: JSON.parse(themeDataParsed),
 				rawData: rawData,
 				type: themeDataType,
+				price: Number(price),
 			};
 
 			if (req.file) {

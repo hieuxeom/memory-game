@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const cardThemeRouters = require("./apiRouters/cardThemeRouters");
-const gameThemeRouters = require("./apiRouters/gameThemeRouters");
+const gameTopicRouters = require("./apiRouters/gameTopicRouters");
 const authRouters = require("./apiRouters/authRouters");
 const userRouters = require("./apiRouters/userRouters");
 const gameResultRouters = require("./apiRouters/gameResultRouters");
@@ -12,7 +12,7 @@ const rankRouters = require("./apiRouters/rankRouters");
 const shopRouters = require("./apiRouters/shopRouters");
 
 router.use("/card-themes", cardThemeRouters);
-router.use("/game-topics", gameThemeRouters);
+router.use("/game-topics", gameTopicRouters);
 router.use("/auth", authRouters);
 router.use("/users", userRouters);
 router.use("/game-results", gameResultRouters);

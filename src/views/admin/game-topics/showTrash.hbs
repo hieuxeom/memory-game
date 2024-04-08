@@ -1,0 +1,55 @@
+<main class="p-4 w-full h-screen flex flex-col">
+	<div class="w-full flex justify-center items-center gap-12">
+		<button data-tab="add" class="tab-button inactive">Add</button>
+		<button data-tab="all" class="tab-button active">All</button>
+		<button data-tab="edit" class="tab-button inactive">Edit</button>
+		<button data-tab="trash" class="tab-button inactive">Trash</button>
+	</div>
+	<div class="w-full h-full flex gap-4">
+		<div class="w-3/5 max-h-3/4 h-max bg-zinc-100 p-4 rounded-xl">
+			<table class="w-full bg-white">
+				<thead class="">
+					<tr>
+						<th>Theme Name</th>
+						<th>Items</th>
+						<th>Price</th>
+						<th>Played</th>
+						<th>Tag</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody id="listThemeContainer">
+					<tr>
+						<td>Be Mind</td>
+						<td>25</td>
+						<td>290</td>
+						<td>300</td>
+						<td><span class="tag-vip m-2">VIP</span><span class="tag-deleted m-2">Deleted</span></td>
+						<td>
+							<div class="w-full">
+								<button class="view-button text-slate-200 bg-secondary p-2 rounded-lg">
+									<i class="fa-solid fa-eye text-white"></i>
+								</button>
+								<button class="edit-button text-slate-200 bg-warning p-2 rounded-lg">
+									<i class="fa-solid fa-pen text-white"></i>
+								</button>
+								<button class="recover-button text-slate-200 bg-success p-2 rounded-lg">
+									<i class="fa-solid fa-rotate-left text-white"></i>
+								</button>
+								<button class="recover-button text-slate-200 bg-danger p-2 rounded-lg">
+									<i class="fa-solid fa-trash-can text-white"></i>
+								</button>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div
+			id="listItemsContainer"
+			class="w-2/5 max-h-[90vh] h-max overflow-y-scroll style-4 flex flex-wrap justify-center items-center gap-4 bg-zinc-100 rounded-xl p-4"
+		>
+
+		</div>
+	</div>
+</main>

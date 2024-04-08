@@ -1,0 +1,73 @@
+<main class="p-4 w-full h-screen flex flex-col">
+	<div class="w-full flex justify-center items-center gap-12">
+		<button data-tab="add" class="tab-button inactive">Add</button>
+		<button data-tab="all" class="tab-button active">All</button>
+		<button data-tab="edit" class="tab-button inactive">Edit</button>
+		<button data-tab="trash" class="tab-button inactive">Trash</button>
+	</div>
+	<div class="w-full h-full flex gap-4">
+		<div class="w-3/5 max-h-3/4 h-max bg-zinc-100 p-4 rounded-xl">
+			<table class="w-full bg-white">
+				<thead class="">
+					<tr>
+						<th>Theme Name</th>
+						<th>Items</th>
+						<th>Price</th>
+						<th>Played</th>
+						<th>Tag</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody id="listThemeContainer">
+				</tbody>
+			</table>
+		</div>
+		<div id="listItemsContainer" class="w-2/5 max-h-[90vh] h-max flex flex-wrap justify-center items-center gap-4 bg-zinc-100 rounded-xl p-4">
+			<form id="formContainer" class="w-11/12 flex flex-col gap-4 rounded-xl">
+				<div class="form-row flex flex-col gap-1 w-full">
+					<label for="themeName">Theme Name</label>
+					<input type="text" id="themeName" name="themeName" />
+				</div>
+				<div class="form-row flex flex-col gap-1 w-full">
+					<label for="topicThumbnail">Topic Thumbnail</label>
+					<input type="file" id="topicThumbnail" name="topicThumbnail" />
+				</div>
+				<div class="form-row flex flex-coll gap-1 w-full">
+					<div class="w-1/2 form-row flex flex-row items-center justify-start">
+						<input type="checkbox" name="isVip" id="isVip" />
+						<label for="isVip">Is Vip Item?</label>
+					</div>
+					<div class="w-1/2 form-row">
+						<label for="price">Price</label>
+						<input type="number" name="price" id="price" disabled />
+					</div>
+				</div>
+				<div class="text-2xl flex flex-col gap-4">
+					<div class="flex gap-4 text-2xl">
+						<p>Type: </p>
+						<div>
+							<input type="radio" name="themeDataType" value="icon" checked />
+							<label for="themeDataType">Icon</label>
+						</div>
+						<div>
+							<input type="radio" name="themeDataType" value="image" />
+							<label for="themeDataType">Image</label>
+						</div>
+					</div>
+					<div class="form-row flex flex-col gap-1 w-full">
+						<textarea
+							class="text-2xl px-4 py-2 style-4"
+							rows="10"
+							id="themeData"
+							name="themeData"
+							placeholder='Follow format: "icon value - data value" and one data/row'
+						></textarea>
+					</div>
+				</div>
+				<div class="form-row">
+					<input id="submitButton" type="submit" value="Submit" class="text-2xl bg-primary text-white px-8 py-2 rounded-full w-full" />
+				</div>
+			</form>
+		</div>
+	</div>
+</main>
