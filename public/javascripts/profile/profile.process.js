@@ -1,6 +1,7 @@
 import { getUserData } from "../ts-utils/General.js";
 import { direct } from "../ts-utils/Direct.js";
 import { handleSignOut } from "./profile.signout.js";
+import { handleRefetchData } from "./refetch.user-data.js";
 function isIUser(userData) {
     return userData._id !== undefined;
 }
@@ -39,6 +40,7 @@ else {
                 mostPlayedTimeValue.innerHTML = mostPlayedTime?.toString() ?? "-";
             }
         });
+        handleRefetchData();
     }
     else {
         direct("/auth");

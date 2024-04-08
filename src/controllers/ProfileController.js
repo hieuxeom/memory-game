@@ -1,6 +1,6 @@
 class UserController {
 	index(req, res, next) {
-		return res.render("profile/index", {
+		return res.render("profile/userInfo", {
 			containerId: "authContainer",
 			listScripts: [
 				{
