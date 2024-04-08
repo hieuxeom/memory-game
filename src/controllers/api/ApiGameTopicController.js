@@ -192,7 +192,7 @@ class ApiGameTopicController {
 			if (editStatus) {
 				return res.status(200).json({
 					status: "redirect",
-					url: `/admin/game-themes/${themeId}`,
+					url: `/admin/game-topics/${themeId}`,
 				});
 			} else {
 				return res.status(503).json({
@@ -223,7 +223,7 @@ class ApiGameTopicController {
 			if (deleteStatus) {
 				return res.status(200).json({
 					status: "redirect",
-					url: "/admin/game-themes/all",
+					url: "/admin/game-topics/all",
 				});
 			} else {
 				return res.status(503).json({
@@ -255,7 +255,7 @@ class ApiGameTopicController {
 			if (deleteStatus) {
 				return res.status(200).json({
 					status: "redirect",
-					url: "/admin/game-themes/all",
+					url: "/admin/game-topics/all",
 				});
 			} else {
 				return res.status(503).json({
@@ -284,7 +284,7 @@ class ApiGameTopicController {
 			if (deleteStatus) {
 				return res.status(200).json({
 					status: "redirect",
-					url: "/admin/game-themes/all",
+					url: "/admin/game-topics/all",
 				});
 			} else {
 				return res.status(503).json({

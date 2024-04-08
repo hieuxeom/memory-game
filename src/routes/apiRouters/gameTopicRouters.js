@@ -4,7 +4,7 @@ const router = express.Router();
 
 const apiGameTopic = require("../../controllers/api/ApiGameTopicController");
 
-const gameThemeStorage = multer.diskStorage({
+const gameTopicStorage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		cb(null, "./public/images/game_thumbnails");
 	},
@@ -14,7 +14,7 @@ const gameThemeStorage = multer.diskStorage({
 	},
 });
 
-const gameThemeUpload = multer({ storage: gameThemeStorage });
+const gameThemeUpload = multer({ storage: gameTopicStorage });
 
 const gameThumbnailUpload = gameThemeUpload.single("themeThumbnail");
 

@@ -1,9 +1,9 @@
-import { getGameThemeData } from "./charts/game-theme.chart.js";
-import { getCardThemeData } from "./charts/card-theme.chart.js";
-import { getGameSizeData } from "./charts/game-size.chart.js";
-import { getGameTimeData } from "./charts/game-time.chart.js";
+import { getGameThemeData as getGameTopicsData } from "./charts/game-topics.chart.js";
+import { getCardThemeData as getCardThemesData } from "./charts/card-theme.chart.js";
+import { getGameSizeData as getGameSizesData } from "./charts/game-size.chart.js";
+import { getGameTimeData as getGameTimesData } from "./charts/game-time.chart.js";
 
-const gameThemeContainer = document.getElementById("topGameTheme");
+const gameTopicContainer = document.getElementById("topGameTopic");
 const cardThemeContainer = document.getElementById("topCardTheme");
 const gameSizeContainer = document.getElementById("topGameSize");
 const gameTimeContainer = document.getElementById("topGameTime");
@@ -36,8 +36,8 @@ const datalabelsConfig = {
 	color: "#900C3F",
 };
 
-getGameThemeData().then(({ labels, data }) => {
-	new Chart(gameThemeContainer, {
+getGameTopicsData().then(({ labels, data }) => {
+	new Chart(gameTopicContainer, {
 		type: "bar",
 		data: {
 			labels,
@@ -56,7 +56,7 @@ getGameThemeData().then(({ labels, data }) => {
 	});
 });
 
-getCardThemeData().then(({ labels, data }) => {
+getCardThemesData().then(({ labels, data }) => {
 	console.log(labels, data);
 	new Chart(cardThemeContainer, {
 		type: "bar",
@@ -76,7 +76,7 @@ getCardThemeData().then(({ labels, data }) => {
 	});
 });
 
-getGameSizeData().then(({ labels, data }) => {
+getGameSizesData().then(({ labels, data }) => {
 	new Chart(gameSizeContainer, {
 		type: "doughnut",
 		data: {
@@ -95,7 +95,7 @@ getGameSizeData().then(({ labels, data }) => {
 	});
 });
 
-getGameTimeData().then(({ labels, data }) => {
+getGameTimesData().then(({ labels, data }) => {
 	new Chart(gameTimeContainer, {
 		type: "doughnut",
 		data: {

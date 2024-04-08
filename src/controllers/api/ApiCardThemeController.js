@@ -100,15 +100,15 @@ class ApiCardThemeController {
 
 		limit = limit || 10;
 
-		const gameThemesData = await cardThemeModel
+		const cardThemesData = await cardThemeModel
 			.find()
 			.limit(limit)
 			.skip((page - 1) * limit);
 
 		return res.status(200).json({
 			status: "success",
-			message: `Successfully received ${gameThemesData.length} game themes on page ${page}`,
-			data: gameThemesData,
+			message: `Successfully received ${cardThemesData.length} game themes on page ${page}`,
+			data: cardThemesData,
 			currentPage: page,
 			limit,
 			// totalPage:
