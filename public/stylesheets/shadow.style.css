@@ -1,0 +1,14 @@
+.shadow-1 {
+	box-shadow: 2px 2px 0px 2px #f95c47, -1px -1px 0px 1px #f95c47, 0px 4px 2px 0px #f95c47;
+}
+.shadow-2 {
+	box-shadow: 2px 2px 0px 2px #f95c47, -1px -1px 0px 1px #182c45, 0px 4px 2px 0px #182c45;
+}
+
+.shadow-3 {
+	box-shadow: 2px 2px 0px 2px #182c45, -1px -1px 0px 1px #182c45, 0px 4px 2px 0px #182c45;
+}
+
+.shadow-3:hover {
+	box-shadow: 2px 2px 0px 2px #f95c47, -1px -1px 0px 1px #f95c47, 0px 4px 2px 0px #f95c47;
+}

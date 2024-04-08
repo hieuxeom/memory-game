@@ -1,0 +1,16 @@
+table {
+    border-collapse: collapse;
+    color: var(--secondary);
+}
+
+tr, th, td {
+    padding: .25rem .5rem;
+    border: 2px solid var(--primary);
+    text-align: center;
+    width: max-content;
+}
+
+thead {
+    font-size: 1.5rem;
+}
+
