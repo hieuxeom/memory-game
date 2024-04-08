@@ -1,4 +1,5 @@
-import { getCurrentGameTime, setGameTime } from "../../ts-utils/General.js";
+import { getCurrentGameMode, getCurrentGameTime, setGameTime } from "../../ts-utils/General.js";
+import { setWinScore } from "./game.show-win-score.js";
 const getListTimeButton = () => {
     return document.querySelectorAll(".time-button");
 };
@@ -29,9 +30,11 @@ export const selectTime = () => {
     console.log(listButton);
     listButton.forEach((button) => {
         button.addEventListener("click", () => {
-            console.log(button);
             handleUnSelectTimeButton();
             handleSelectTimeButton(button);
+            if (getCurrentGameMode() === "challenge") {
+                setWinScore();
+            }
         });
     });
 };

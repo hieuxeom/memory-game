@@ -1,4 +1,4 @@
-import { generateGuestId, getCurrentCardTheme, getCurrentGameMode, getCurrentGameSize, getCurrentGameTime, getCurrentGameTopic, getLocalGuestId, getUserId, setLocalGuestId } from "../ts-utils/General.js";
+import { generateGuestId, getCurrentCardTheme, getCurrentGameMode, getCurrentGameSize, getCurrentGameTime, getCurrentGameTopic, getLocalGuestId, getUserId, setLocalGuestId, } from "../ts-utils/General.js";
 import { mapData } from "../game/play-board/game.mapping-data.js";
 import { calculateScore } from "../game/play-board/game.score-calculator.js";
 export class GameRule {
@@ -44,8 +44,8 @@ export class GameRule {
         }
         if (next) {
             array.length = length / 2;
-            // return this.shuffleAndSlice([...array, ...array], length, false);
-            return [...array, ...array];
+            return this.shuffleAndSlice([...array, ...array], length, false);
+            // return [...array, ...array];
         }
         else {
             return [...array];
@@ -62,11 +62,9 @@ export class GameRule {
             }
         });
     }
-    ;
     isMatch([v1, v2]) {
         return v1.getAttribute("data-value") === v2.getAttribute("data-value");
     }
-    ;
     isOnTime() {
         const timer = document.getElementById("secondValue");
         return Number(timer.getAttribute("data-time")) > 0;
@@ -75,7 +73,7 @@ export class GameRule {
         const scoreValue = document.getElementById("score");
         this.gameScore = newScore;
         scoreValue.dataset.score = newScore.toString();
-        return scoreValue.innerHTML = newScore.toString();
+        return (scoreValue.innerHTML = newScore.toString());
     }
     mapGameLogic() {
         const listOfCards = document.querySelectorAll(".card");
@@ -96,7 +94,7 @@ export class GameRule {
                                 this.countMatchedCards += 2;
                                 setTimeout(() => {
                                     tempCompare.forEach((e) => {
-                                        e.style.visibility = 'hidden';
+                                        e.style.visibility = "hidden";
                                         e.classList.add("matched");
                                     });
                                 }, 500);

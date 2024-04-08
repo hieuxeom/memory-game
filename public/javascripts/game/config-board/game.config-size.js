@@ -1,4 +1,5 @@
-import { getCurrentGameSize, setGameSize } from "../../ts-utils/General.js";
+import { getCurrentGameMode, getCurrentGameSize, setGameSize } from "../../ts-utils/General.js";
+import { setWinScore } from "./game.show-win-score.js";
 const getListSizeButton = () => {
     return document.querySelectorAll(".size-button");
 };
@@ -27,8 +28,11 @@ export const defaultSelectSize = () => {
 };
 export const selectSize = () => {
     const listButton = getListSizeButton();
-    listButton.forEach((button) => button.addEventListener("click", (() => {
+    listButton.forEach((button) => button.addEventListener("click", () => {
         handleUnSelectSizeButton();
         handleSelectSizeButton(button);
-    })));
+        if (getCurrentGameMode() === "challenge") {
+            setWinScore();
+        }
+    }));
 };
