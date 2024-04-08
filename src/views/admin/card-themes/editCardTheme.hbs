@@ -1,0 +1,69 @@
+<main class="p-4 w-full h-screen flex flex-col">
+	<div class="w-full flex justify-center items-center gap-12">
+		<button data-tab="add" class="tab-button inactive">New</button>
+		<button data-tab="all" class="tab-button active">All</button>
+		<button data-tab="edit" class="tab-button inactive">Edit</button>
+		<button data-tab="trash" class="tab-button inactive">Trash</button>
+	</div>
+	<div class="w-full h-full flex gap-4">
+		<div class="w-full max-h-3/4 h-max bg-zinc-100 p-4 rounded-xl">
+			<table class="w-full bg-white">
+				<thead class="">
+					<tr>
+						<th>Theme Name</th>
+						<th>Tag</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody id="listThemeContainer">
+
+				</tbody>
+			</table>
+		</div>
+
+		<div class="w-full max-h-[90vh] flex flex-col items-center gap-4 rounded-xl p-4">
+			<div class="h-max w-full bg-zinc-100 rounded-xl">
+				<form id="formContainer" class="w-11/12 h-max p-4 flex flex-col gap-4 rounded-xl">
+					<input type="hidden" id="themeId" name="themeId" value="{{themeId}}" />
+					<div class="form-row flex flex-col gap-1 w-full">
+						<label for="themeName">Theme Name</label>
+						<input type="text" id="themeName" value="" name="themeName" />
+					</div>
+					<div class="form-row flex flex-col gap-1 w-full">
+						<label for="cardFront">Theme Front</label>
+						<input type="file" id="cardFront" name="cardFront" />
+					</div>
+					<div class="form-row flex flex-col gap-1 w-full">
+						<label for="cardBack">Theme Back</label>
+						<input type="file" id="cardBack" name="cardBack" />
+					</div>
+					<div class="form-row flex flex-row items-center justify-start">
+						<div class="w-1/2 form-row flex flex-row items-center justify-start">
+							<input type="checkbox" name="isVip" id="isVip" />
+							<label for="isVip">Is Vip Item?</label>
+						</div>
+						<div class="w-1/2 form-row">
+							<label for="price">Price</label>
+							<input type="number" name="price" id="price" value="" />
+						</div>
+					</div>
+					<div class="form-row">
+						<input id="submitButton" type="submit" value="Submit" class="text-2xl bg-primary text-white px-8 py-2 rounded-full w-full" />
+					</div>
+				</form>
+			</div>
+			<div class="w-full h-1/4 flex justify-center items-center gap-4 bg-zinc-100 rounded-xl">
+				<div class="bg-secondary h-full rounded-md p-2 flex flex-row-reverse text-white items-center gap-2">
+					<p>Back-face</p>
+					<img id="backFaceImage" class="h-full" src="/images/themepacks/1710352308388.png" alt="" />
+				</div>
+
+				<div class="bg-secondary h-full rounded-md p-2 flex text-white items-center gap-2">
+					<p>Front-face</p>
+					<img id="frontFaceImage" class="h-full" src="/images/themepacks/1710352308388.png" alt="" />
+				</div>
+
+			</div>
+		</div>
+	</div>
+</main>

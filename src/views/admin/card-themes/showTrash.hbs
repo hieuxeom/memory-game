@@ -1,0 +1,40 @@
+<main class="p-4 w-full h-screen flex flex-col">
+	<div class="w-full flex justify-center items-center gap-12">
+		<button data-tab="add" class="tab-button inactive">New</button>
+		<button data-tab="all" class="tab-button active">All</button>
+		<button data-tab="edit" class="tab-button inactive">Edit</button>
+		<button data-tab="trash" class="tab-button inactive">Trash</button>
+	</div>
+	<div class="w-full h-full flex flex-col gap-4">
+		<div class="w-full max-h-3/4 h-max bg-zinc-100 p-4 rounded-xl">
+			<table class="w-full bg-white">
+				<thead class="">
+					<tr>
+						<th>Theme Name</th>
+						<th>Price</th>
+						<th>Used</th>
+						<th>Created At</th>
+						<th>Last Updated At</th>
+						<th>Tag</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody id="listThemeContainer">
+
+				</tbody>
+			</table>
+		</div>
+		<div class="w-full h-1/4 flex justify-center items-center gap-4 bg-zinc-100 rounded-xl p-4">
+			<div class="bg-secondary h-full rounded-md p-2 flex flex-row-reverse text-white items-center gap-2">
+				<p>Back-face</p>
+				<img id="backFaceImage" class="h-full" src="/images/themepacks/1710352308388.png" alt="" />
+
+			</div>
+			<div class="bg-secondary h-full rounded-md p-2 flex text-white items-center gap-2">
+				<p>Front-face</p>
+				<img id="frontFaceImage" class="h-full" src="/images/themepacks/1710352308388.png" alt="" />
+			</div>
+
+		</div>
+	</div>
+</main>
