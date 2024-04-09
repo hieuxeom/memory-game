@@ -60,14 +60,24 @@ export const getUserData = () => {
 export const setUserData = (userData) => {
     return localStorage.setItem("userData", JSON.stringify(userData));
 };
-export const getSearchParams = (key) => {
-    const searchParams = new URLSearchParams(window.location.search);
-    return searchParams.get(key) ?? undefined;
-};
 export const getUserId = () => {
     if (getUserData()) {
         return getUserData()?._id || undefined;
     }
+};
+export const getLastLogin = () => {
+    if (getUserData()) {
+        return getUserData()?.lastLogin || undefined;
+    }
+};
+export const getUserStreak = () => {
+    if (getUserData()) {
+        return getUserData()?.streakLogin || undefined;
+    }
+};
+export const getSearchParams = (key) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    return searchParams.get(key) ?? undefined;
 };
 export const generateGuestId = () => {
     return `guestPlayer${Date.now()}`;

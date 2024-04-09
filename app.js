@@ -4,7 +4,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-const { loadDb, authentication, isExpired, permit } = require("./src/utils/middleware");
+const { loadDb, authentication, isExpired, permit, checkStreak } = require("./src/utils/middleware");
 
 const app = express();
 
@@ -37,7 +37,7 @@ const shopRouter = require("./src/routes/shopRouter");
 const adminRouter = require("./src/routes/adminRouter");
 const rankRouter = require("./src/routes/rankRouter");
 
-app.use("/", homeRouter);
+app.use("/", checkStreak(), homeRouter);
 app.use("/game", gameRouter);
 app.use("/api", apiRouter);
 app.use("/inventory", inventoryRouter);

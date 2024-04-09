@@ -77,15 +77,27 @@ export const setUserData = (userData: IUser) => {
 	return localStorage.setItem("userData", JSON.stringify(userData));
 };
 
-export const getSearchParams = (key: string): string | undefined => {
-	const searchParams = new URLSearchParams(window.location.search);
-	return searchParams.get(key) ?? undefined;
-};
-
 export const getUserId = (): string | undefined => {
 	if (getUserData()) {
 		return getUserData()?._id || undefined;
 	}
+};
+
+export const getLastLogin = (): Date | undefined => {
+	if (getUserData()) {
+		return getUserData()?.lastLogin || undefined;
+	}
+};
+
+export const getUserStreak = (): number | undefined => {
+	if (getUserData()) {
+		return getUserData()?.streakLogin || undefined;
+	}
+};
+
+export const getSearchParams = (key: string): string | undefined => {
+	const searchParams = new URLSearchParams(window.location.search);
+	return searchParams.get(key) ?? undefined;
 };
 
 export const generateGuestId = () => {

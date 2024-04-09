@@ -29,6 +29,10 @@ const UserSchema = new Schema(
 				gameTopics: [],
 			},
 		},
+		lastLogin: { type: Date, default: Date },
+		streakLogin: { type: Number, default: 1 },
+		maxStreak: { type: Number, default: 1 },
+		isGetReward: { type: Boolean, default: false },
 	},
 	{ timestamps: true }
 );
