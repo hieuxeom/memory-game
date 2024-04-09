@@ -33,7 +33,7 @@ export class PlayCard extends Card {
     }
     render() {
         return `<div data-value="${this.value}"
-                    class="card relative bg-transparent shadow-lg h-[${this.isNormal ? "170" : "135"}px] rounded-lg overflow-hidden"
+                    class="card relative bg-transparent h-[${this.isNormal ? "170" : "135"}px] rounded-lg overflow-hidden"
                 >
                     <div class="card-back h-full">
                         <img src="/images/themepacks/${this.backFace}" class="w-full h-full" alt=""/>

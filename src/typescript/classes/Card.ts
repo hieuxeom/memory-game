@@ -1,21 +1,20 @@
-import {IPlayCard} from "../types/Card.js";
+import { IPlayCard } from "../types/Card.js";
 
 export class Card {
+	frontFace: string;
+	backFace: string;
 
-    frontFace: string;
-    backFace: string;
+	constructor(frontFace?: string, backFace?: string) {
+		this.frontFace = frontFace ?? "";
+		this.backFace = backFace ?? "";
+	}
 
-    constructor(frontFace?: string, backFace?: string) {
-        this.frontFace = frontFace ?? ""
-        this.backFace = backFace ?? ""
-    }
+	onSelect(handler: () => void) {
+		return handler;
+	}
 
-    onSelect(handler: () => void) {
-        return handler
-    }
-
-    render() {
-        return `<div class="crd relative shadow-lg h-[170px] rounded-lg overflow-hidden">
+	render() {
+		return `<div class="crd relative shadow-lg h-[170px] rounded-lg overflow-hidden">
                     <div class="card-back h-full">
                         <img src="/images/themepacks/${this.backFace}" class="w-full h-full" alt="cardBack"/>
                     </div>
@@ -24,25 +23,24 @@ export class Card {
                             <img src="/images/themepacks/${this.frontFace}" class="w-full h-full" alt="cardBack"/>
                         </div>
                     </div>
-                </div>`
-    }
+                </div>`;
+	}
 }
 
 export class PlayCard extends Card {
-    icon: string;
-    value: string;
-    isNormal: boolean = true;
-    constructor({frontFace, backFace, icon, value}: IPlayCard, isNormal: boolean) {
-        super(frontFace, backFace);
-        this.icon = icon;
-        this.value = value;
-        this.isNormal = isNormal
+	icon: string;
+	value: string;
+	isNormal: boolean = true;
+	constructor({ frontFace, backFace, icon, value }: IPlayCard, isNormal: boolean) {
+		super(frontFace, backFace);
+		this.icon = icon;
+		this.value = value;
+		this.isNormal = isNormal;
+	}
 
-    }
-
-    render() {
-        return `<div data-value="${this.value}"
-                    class="card relative bg-transparent shadow-lg h-[${this.isNormal ? "170" : "135"}px] rounded-lg overflow-hidden"
+	render() {
+		return `<div data-value="${this.value}"
+                    class="card relative bg-transparent h-[${this.isNormal ? "170" : "135"}px] rounded-lg overflow-hidden"
                 >
                     <div class="card-back h-full">
                         <img src="/images/themepacks/${this.backFace}" class="w-full h-full" alt=""/>
@@ -55,80 +53,84 @@ export class PlayCard extends Card {
                             <i class="${this.icon} text-4xl"></i>
                         </div>
                     </div>
-                </div>`
-    }
+                </div>`;
+	}
 }
 
 export class CardThemeCard extends Card {
-    _id: string
+	_id: string;
 
-    isSelected: boolean = false;
+	isSelected: boolean = false;
 
-    constructor(_id: string, backFace: string, frontFace: string, isSelected: boolean) {
-        super(frontFace, backFace);
-        this._id = _id;
-        this.isSelected = isSelected
-    }
+	constructor(_id: string, backFace: string, frontFace: string, isSelected: boolean) {
+		super(frontFace, backFace);
+		this._id = _id;
+		this.isSelected = isSelected;
+	}
 
-    render() {
-        return `<div data-id="${this._id}" class="card-theme relative shadow-lg h-[150px] rounded-lg overflow-hidden ${this.isSelected ? "selected" : ""}">
+	render() {
+		return `<div data-id="${this._id}" class="card-theme relative shadow-lg h-[150px] rounded-lg overflow-hidden ${
+			this.isSelected ? "selected" : ""
+		}">
                     <div class="card-back h-full">
                         <img src="/images/themepacks/${this.backFace}" class="w-full h-full" alt="cardBack"/>
                     </div>
-                </div>`
-    }
+                </div>`;
+	}
 }
 
 export class GameTopicCard extends Card {
-    _id: string
-    themeName: string;
-    isSelected: boolean = false;
+	_id: string;
+	themeName: string;
+	isSelected: boolean = false;
 
-    constructor(_id: string, themeName: string,  backFace: string, isSelected: boolean) {
-        super("", backFace);
-        this._id = _id;
-        this.themeName = themeName;
-        this.isSelected = isSelected
-    }
+	constructor(_id: string, themeName: string, backFace: string, isSelected: boolean) {
+		super("", backFace);
+		this._id = _id;
+		this.themeName = themeName;
+		this.isSelected = isSelected;
+	}
 
-    render() {
-        return `<div data-id="${this._id}" class="game-topic relative shadow-lg h-[150px] rounded-lg overflow-hidden ${this.isSelected ? "selected" : ""}">
+	render() {
+		return `<div data-id="${this._id}" class="game-topic relative shadow-lg h-[150px] rounded-lg overflow-hidden ${
+			this.isSelected ? "selected" : ""
+		}">
                     <div class="card-back h-full">
                         <img src="/images/game_thumbnails/${this.backFace}" class="w-full h-full" alt="cardBack"/>
                     </div>
-                </div>`
-    }
+                </div>`;
+	}
 }
 
 export class ShopCardTheme extends Card {
-    _id: string;
+	_id: string;
 
-    constructor(_id: string, backFace: string) {
-        super("", backFace);
-        this._id = _id;
-    }
+	constructor(_id: string, backFace: string) {
+		super("", backFace);
+		this._id = _id;
+	}
 
-    render() {
-        return `<div data-id="${this._id}" class="card-theme relative shadow-lg h-[170px] rounded-lg overflow-hidden">
+	render() {
+		return `<div data-id="${this._id}" class="card-theme relative shadow-lg h-[170px] rounded-lg overflow-hidden">
                     <div class="card-back h-full">
                         <img src="/images/themepacks/${this.backFace}" class="w-full h-full" alt="cardBack"/>
                     </div>
-                </div>`
-    }
+                </div>`;
+	}
 }
 
 export class ShopGameTopic extends Card {
-    _id: string;
-    constructor(_id: string, themeThumbnail: string) {
-        super("", themeThumbnail);
-        this._id = _id;
-    }
+	_id: string;
+	constructor(_id: string, themeThumbnail: string) {
+		super("", themeThumbnail);
+		this._id = _id;
+	}
 
-    render() {
-        return `<div data-id="${this._id}" class="card-theme relative shadow-lg h-[170px] rounded-lg overflow-hidden">
+	render() {
+		return `<div data-id="${this._id}" class="card-theme relative shadow-lg h-[170px] rounded-lg overflow-hidden">
                     <div class="card-back h-full">
                         <img src="/images/game_thumbnails/${this.backFace}" class="w-full h-full" alt="cardBack"/>
                     </div>
-                </div>`
-    }
+                </div>`;
+	}
 }
