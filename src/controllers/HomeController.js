@@ -1,19 +1,19 @@
 class HomeController {
-    constructor() {
+	constructor() {}
 
-    }
-
-    homepage(req, res, next) {
-        return res.render("index", {
-            containerId: "homeContainer",
-            listScripts: [
-                {
-                    path: "home/home.process.js",
-                    type: "module",
-                }
-            ]
-        })
-    }
+	homepage(req, res, next) {
+		const isNotLogin = !req.cookies._id;
+		return res.render("index", {
+			containerId: "homeContainer",
+			listScripts: [
+				{
+					path: "home/home.process.js",
+					type: "module",
+				},
+			],
+			isNotLogin,
+		});
+	}
 }
 
 module.exports = new HomeController();

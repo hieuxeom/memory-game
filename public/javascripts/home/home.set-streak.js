@@ -46,6 +46,7 @@ const isInRange = (streakButton, streakValue) => {
             return streakValue >= Number(range);
         }
     }
+    return false;
 };
 const setStreakBoard = () => {
     const listStreakButton = getListStreakButtons();
@@ -58,10 +59,20 @@ const setStreakBoard = () => {
         });
     }
 };
+const hideStreakBoard = () => {
+    const streakBoard = document.getElementById("streakBoard");
+    console.log("🚀 ~ hideStreakBoard ~ streakBoard:", streakBoard);
+    return streakBoard.classList.add("hidden");
+};
+const showStreakBoard = () => {
+    const streakBoard = document.getElementById("streakBoard");
+    return streakBoard.classList.remove("hidden");
+};
 export const handleSetStreak = async () => {
     const userData = getUserData();
+    console.log("🚀 ~ handleSetStreak ~ getUserData:", getUserData);
     if (userData) {
-        // console.log("🚀 ~ handleSetStreak ~ getLastLogin():", typeof getLastLogin());
+        showStreakBoard();
         if (isCurrentDate(new Date(getLastLogin()))) {
             setStreak();
         }
@@ -70,5 +81,8 @@ export const handleSetStreak = async () => {
             setStreak();
         }
         setStreakBoard();
+    }
+    else {
+        hideStreakBoard();
     }
 };

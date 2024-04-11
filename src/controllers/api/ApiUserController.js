@@ -38,36 +38,42 @@ class ApiUserController {
 	async getStreak(req, res, next) {
 		const { userId } = req.params;
 
-		const userData = await userModel.findById(userId).select(["lastLogin", "streakLogin", "maxStreak"]);
+		if (userId !== "undefined") {
+			const userData = await userModel.findById(userId).select(["lastLogin", "streakLogin", "maxStreak"]);
 
-		const { lastLogin, streakLogin, maxStreak } = userData;
+			const { lastLogin, streakLogin, maxStreak } = userData;
 
-		const currentDate = new Date();
+			const currentDate = new Date();
 
-		if (!isCurrentDate(lastLogin)) {
-			const differenceDays = calculateStreak(new Date(lastLogin), new Date(currentDate));
+			if (!isCurrentDate(lastLogin)) {
+				const differenceDays = calculateStreak(new Date(lastLogin), new Date(currentDate));
 
-			if (differenceDays < 2) {
-				await userModel.findByIdAndUpdate(userId, {
-					lastLogin: new Date(),
-					$inc: { streakLogin: 1 },
-					maxStreak: Math.max(streakLogin + 1, maxStreak),
-					isGetReward: false,
-				});
-			} else {
-				await userModel.findByIdAndUpdate(userId, {
-					lastLogin: new Date(),
-					streakLogin: 0,
-					isGetReward: false,
-				});
+				if (differenceDays < 2) {
+					await userModel.findByIdAndUpdate(userId, {
+						lastLogin: new Date(),
+						$inc: { streakLogin: 1 },
+						maxStreak: Math.max(streakLogin + 1, maxStreak),
+						isGetReward: false,
+					});
+				} else {
+					await userModel.findByIdAndUpdate(userId, {
+						lastLogin: new Date(),
+						streakLogin: 0,
+						isGetReward: false,
+					});
+				}
 			}
-		}
 
-		return res.status(200).json({
-			status: "success",
-			message: "Get user streak information successfully",
-			data: await userModel.findById(userId),
-		});
+			return res.status(200).json({
+				status: "success",
+				message: "Get user streak information ",
+				data: await userModel.findById(userId),
+			});
+		} else {
+			return res.status(404).json({
+				status: "fail",
+			});
+		}
 	}
 
 	getRewardCoins(streakLogin) {

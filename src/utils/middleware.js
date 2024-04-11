@@ -46,10 +46,10 @@ const permit = (requireRole) => {
 	};
 };
 
-const isExpired = () => {
+const isExpired = (backRef = "auth") => {
 	return (req, res, next) => {
 		if (!req.cookies._id) {
-			return res.redirect("/auth/signout");
+			return res.redirect(`/auth/signout?backref=${backRef}`);
 		} else {
 			next();
 		}
