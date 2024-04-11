@@ -95,7 +95,6 @@ export class GameRule {
         this.turnClick = 1;
         this.compareValue = [];
         this.countOpenCards = 0;
-        this.wrongCount = 0;
         return;
     }
     updateCountMatchedCard() {
@@ -375,6 +374,15 @@ export class HardCoreGameRule extends NormalGameRule {
             return (wrongChance.innerHTML = `${3 - this.wrongCount}`);
         }
     }
+    increaseWrongChance() {
+        if (this.wrongCount > -3) {
+            this.wrongCount -= 1;
+        }
+        const wrongChance = document.getElementById("wrongChance");
+        if (wrongChance) {
+            return (wrongChance.innerHTML = `${3 - this.wrongCount}`);
+        }
+    }
     mapGameLogic() {
         const listOfCards = document.querySelectorAll(".card");
         listOfCards.forEach((card) => {
@@ -386,6 +394,7 @@ export class HardCoreGameRule extends NormalGameRule {
                             this.totalTurn++;
                             if (this.isMatch(this.compareValue)) {
                                 let tempCompare = this.compareValue;
+                                this.increaseWrongChance();
                                 setTimeout(() => {
                                     tempCompare.forEach((e) => {
                                         e.style.visibility = "hidden";
@@ -405,7 +414,7 @@ export class HardCoreGameRule extends NormalGameRule {
                                     this.turnClick += 1;
                                     this.handleHideCard(listOfCards);
                                     this.decreaseWrongChance();
-                                    if (this.wrongCount % 3 === 0) {
+                                    if (this.wrongCount > 0 && this.wrongCount % 3 === 0) {
                                         this.timer.stop(false);
                                         this.handleLoseGame();
                                     }
