@@ -17,6 +17,7 @@ export class GameRule {
     compareValue = [];
     countMatchedCards = 0;
     turnClick = 1;
+    wrongCount = 0;
     constructor() {
         this.gameTopicId = getCurrentGameTopic();
         this.cardThemeId = getCurrentCardTheme();
@@ -44,8 +45,8 @@ export class GameRule {
         }
         if (next) {
             array.length = length / 2;
-            return this.shuffleAndSlice([...array, ...array], length, false);
-            // return [...array, ...array];
+            // return this.shuffleAndSlice([...array, ...array], length, false);
+            return [...array, ...array];
         }
         else {
             return [...array];
@@ -75,59 +76,82 @@ export class GameRule {
         scoreValue.dataset.score = newScore.toString();
         return (scoreValue.innerHTML = newScore.toString());
     }
+    hideCard(card) {
+        this.countOpenCards--;
+        card.classList.remove("open");
+        card.classList.remove("open-effect");
+        card.classList.add("close-effect");
+        return;
+    }
+    openCard(card) {
+        this.countOpenCards++;
+        card.classList.remove("close-effect");
+        card.classList.add("open");
+        card.classList.add("open-effect");
+        this.compareValue.push(card);
+        return;
+    }
+    resetCheckRule() {
+        this.turnClick = 1;
+        this.compareValue = [];
+        this.countOpenCards = 0;
+        this.wrongCount = 0;
+        return;
+    }
+    updateCountMatchedCard() {
+        return (this.countMatchedCards = document.querySelectorAll(".card.matched").length);
+    }
     mapGameLogic() {
         const listOfCards = document.querySelectorAll(".card");
         listOfCards.forEach((card) => {
             card.addEventListener("click", () => {
                 if (this.countOpenCards < 2) {
                     if (!card.className.includes("open")) {
-                        this.countOpenCards++;
-                        card.classList.remove("close-effect");
-                        card.classList.add("open");
-                        card.classList.add("open-effect");
-                        this.compareValue.push(card);
+                        this.openCard(card);
                         if (this.countOpenCards === 2) {
                             this.totalTurn++;
-                            // this.setTotalTurn(totalTurn);
                             if (this.isMatch(this.compareValue)) {
                                 let tempCompare = this.compareValue;
-                                this.countMatchedCards += 2;
                                 setTimeout(() => {
                                     tempCompare.forEach((e) => {
                                         e.style.visibility = "hidden";
                                         e.classList.add("matched");
                                     });
+                                    this.updateCountMatchedCard();
+                                    if (this.countMatchedCards % this.gameSizeNumber === 0 && this.isOnTime()) {
+                                        setTimeout(() => this.render(), 250);
+                                    }
+                                    console.log("🚀 ~ GameRule ~ card.addEventListener ~ countMatchedCards:", this.countMatchedCards);
                                 }, 500);
                                 this.setScore(this.gameScore + calculateScore(this.turnClick));
-                                this.turnClick = 1;
-                                this.compareValue = [];
-                                this.countOpenCards = 0;
-                                if (this.countMatchedCards % this.gameSizeNumber === 0 && this.isOnTime()) {
-                                    setTimeout(() => this.render(), 250);
-                                }
+                                this.resetCheckRule();
                             }
                             else {
                                 setTimeout(() => {
+                                    this.wrongCount++;
                                     this.turnClick += 1;
                                     this.handleHideCard(listOfCards);
+                                    if (this.wrongCount % 3 === 0) {
+                                        this.render(Array.from(listOfCards, (_e) => _e.outerHTML));
+                                    }
                                 }, 500);
                             }
                         }
                     }
                     else {
-                        this.countOpenCards--;
                         this.compareValue = [];
-                        card.classList.remove("open");
-                        card.classList.remove("open-effect");
-                        card.classList.add("close-effect");
+                        this.hideCard(card);
                     }
                 }
             });
         });
     }
-    async render() {
+    async render(gameData) {
+        if (!gameData) {
+            gameData = await this.gameData;
+        }
         if (this.gameContainer) {
-            this.gameContainer.innerHTML = this.shuffleAndSlice(await this.gameData, this.gameSizeNumber).join("");
+            this.gameContainer.innerHTML = this.shuffleAndSlice(gameData, this.gameSizeNumber).join("");
             this.mapGameLogic();
         }
     }
@@ -190,14 +214,21 @@ export class NormalGameRule extends GameRule {
             totalCoins: scoreCoin + gameTimeBonus + gameSizeBonus,
         };
     }
-    showResultBoard = (gameScore, totalCoins, scoreCoin, gameSizeBonus, gameTimeBonus, isHaveHighestScore = false) => {
+    showResultBoard = (gameScore, totalCoins, scoreCoin, gameSizeBonus, gameTimeBonus, isHaveHighestScore = false, isWin = true) => {
         const scoreValue = document.getElementById("gameScore");
         const playerHighestScore = document.getElementById("playerHighestScore");
         const totalCoinsValue = document.getElementById("totalCoins");
         const scoreCoinsValue = document.getElementById("scoreCoins");
         const gameSizeBonusValue = document.getElementById("gameSizeBonus");
         const gameTimeBonusValue = document.getElementById("gameTimeBonus");
+        const backgroundBoard = document.getElementById("backgroundBoard");
         const notificationBoard = document.getElementById("notification");
+        if (isWin) {
+            backgroundBoard.src = "/images/win_noti_2.png";
+        }
+        else {
+            backgroundBoard.src = "/images/lose_noti_2.png";
+        }
         notificationBoard.style.display = "block";
         notificationBoard.style.display = "flex";
         scoreValue.innerHTML = gameScore.toString();
@@ -329,6 +360,139 @@ export class ChallengeGameRule extends GameRule {
         }
         else {
             this.showResultBoard(this.getScoreWin(this.gameSize, this.gameTime), this.gameScore, isWin, 0);
+        }
+    }
+}
+export class HardCoreGameRule extends NormalGameRule {
+    timer;
+    constructor(timer) {
+        super();
+        this.timer = timer;
+    }
+    decreaseWrongChance() {
+        const wrongChance = document.getElementById("wrongChance");
+        if (wrongChance) {
+            return (wrongChance.innerHTML = `${3 - this.wrongCount}`);
+        }
+    }
+    mapGameLogic() {
+        const listOfCards = document.querySelectorAll(".card");
+        listOfCards.forEach((card) => {
+            card.addEventListener("click", () => {
+                if (this.countOpenCards < 2) {
+                    if (!card.className.includes("open")) {
+                        this.openCard(card);
+                        if (this.countOpenCards === 2) {
+                            this.totalTurn++;
+                            if (this.isMatch(this.compareValue)) {
+                                let tempCompare = this.compareValue;
+                                setTimeout(() => {
+                                    tempCompare.forEach((e) => {
+                                        e.style.visibility = "hidden";
+                                        e.classList.add("matched");
+                                    });
+                                    this.updateCountMatchedCard();
+                                    if (this.countMatchedCards % this.gameSizeNumber === 0 && this.isOnTime()) {
+                                        setTimeout(() => this.render(), 250);
+                                    }
+                                }, 500);
+                                this.setScore(this.gameScore + calculateScore(this.turnClick));
+                                this.resetCheckRule();
+                            }
+                            else {
+                                setTimeout(() => {
+                                    this.wrongCount++;
+                                    this.turnClick += 1;
+                                    this.handleHideCard(listOfCards);
+                                    this.decreaseWrongChance();
+                                    if (this.wrongCount % 3 === 0) {
+                                        this.timer.stop(false);
+                                        this.handleLoseGame();
+                                    }
+                                }, 500);
+                            }
+                        }
+                    }
+                    else {
+                        this.compareValue = [];
+                        this.hideCard(card);
+                    }
+                }
+            });
+        });
+    }
+    handleLoseGame() {
+        const _id = this._id;
+        const { scoreCoin, gameTimeBonus, gameSizeBonus, totalCoins } = this.calculateRewardCoins();
+        const confettiContainer = document.getElementById("confetti");
+        confettiContainer.style.display = "block";
+        const historyData = {
+            userId: _id,
+            gameThemeId: this.gameTopicId,
+            cardThemeId: this.cardThemeId,
+            gameTime: this.gameTime,
+            gameSize: this.gameSize,
+            gameScore: this.gameScore,
+            gameTurn: this.totalTurn,
+            totalCoins,
+            gameMode: this.gameMode,
+            isWin: false,
+        };
+        fetch("/api/game-results", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(historyData),
+        })
+            .then((res) => res.json())
+            .then((res) => {
+            if (res.status === "success" && res.data) {
+                localStorage.setItem("userData", JSON.stringify(res.data));
+            }
+        });
+        if (_id) {
+            this.showResultBoard(this.gameScore, totalCoins, scoreCoin, gameSizeBonus, gameTimeBonus, false, false);
+        }
+        else {
+            this.showResultBoard(this.gameScore);
+        }
+    }
+    handleWinGame() {
+        const _id = this._id;
+        const { scoreCoin, gameTimeBonus, gameSizeBonus, totalCoins } = this.calculateRewardCoins();
+        const confettiContainer = document.getElementById("confetti");
+        confettiContainer.style.display = "block";
+        const historyData = {
+            userId: _id,
+            gameThemeId: this.gameTopicId,
+            cardThemeId: this.cardThemeId,
+            gameTime: this.gameTime,
+            gameSize: this.gameSize,
+            gameScore: this.gameScore,
+            gameTurn: this.totalTurn,
+            totalCoins,
+            gameMode: this.gameMode,
+            isWin: true,
+        };
+        fetch("/api/game-results", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(historyData),
+        })
+            .then((res) => res.json())
+            .then((res) => {
+            if (res.status === "success" && res.data) {
+                localStorage.setItem("userData", JSON.stringify(res.data));
+            }
+        });
+        if (_id) {
+            this.showResultBoard(this.gameScore, totalCoins, scoreCoin, gameSizeBonus, gameTimeBonus);
+        }
+        else {
+            this.showResultBoard(this.gameScore);
         }
     }
 }

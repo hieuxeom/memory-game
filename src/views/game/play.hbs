@@ -1,132 +1,132 @@
 <header class="w-full flex justify-between items-center">
-    <a href="/" class="block button-normal active text-white rounded-full">Back</a>
-    <div class="bg-secondary text-white px-8 py-2 rounded-full">
-        <div class="relative flex flex-col flex gap-2">
-            <p class="absolute -top-2 left-0 w-full text-center text-sm">Score</p>
-            <p data-score="0" class="text-[1.5rem]" id="score">0000</p>
-        </div>
-    </div>
+	<a href="/" class="block button-normal active text-white rounded-full">Back</a>
+	{{#if isHardCoreMode}}
+		<div class="text-white px-8 py-2 rounded-full">
+			<div class="flex justify-center items-center gap-2">
+				<p class="text-secondary text-3xl" id="wrongChance">3</p>
+				<i class="fa-solid fa-heart text-red-500 text-2xl"></i>
+			</div>
+		</div>
+	{{/if}}
+	<div class="bg-secondary text-white px-8 py-2 rounded-full">
+		<div class="relative flex flex-col flex gap-2">
+			<p class="absolute -top-2 left-0 w-full text-center text-sm">Score</p>
+			<p data-score="0" class="text-[1.5rem]" id="score">0000</p>
+		</div>
+	</div>
 
-    <div id="timer" class="bg-secondary text-white px-8 py-2 rounded-full">
-        <div class="relative text-[1.5rem] flex gap-2">
-            <p class="absolute -top-2 left-0 w-full text-center text-sm">Time</p>
-            <p id="minuteValue">00</p>
-            <p>:</p>
-            <p id="secondValue">00</p>
-        </div>
-    </div>
+	<div id="timer" class="bg-secondary text-white px-8 py-2 rounded-full">
+		<div class="relative text-[1.5rem] flex gap-2">
+			<p class="absolute -top-2 left-0 w-full text-center text-sm">Time</p>
+			<p id="minuteValue">00</p>
+			<p>:</p>
+			<p id="secondValue">00</p>
+		</div>
+	</div>
 </header>
 <main class="mt-16">
-    <div class="w-full grid grid-cols-4 gap-4 px-4" id="gameContainer">
-    </div>
+	<div class="w-full grid grid-cols-4 gap-4 px-4" id="gameContainer">
+	</div>
 </main>
 
 <section id="notification" class="z-20 absolute top-0 left-0 w-full h-full flex justify-center items-center bg-slate-800/50">
-    <div class="w-3/4 relative">
-        <img src="/images/win_noti_2.png" alt="">
-        <div class="absolute w-full top-28 left-0 transform-x-[-50%] flex flex-col gap-4">
-            <div class="flex justify-between px-8">
-                <h3 class="text-secondary text-3xl">Your Score:</h3>
-                <h3 id="gameScore" class="bg-white px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">1200</h3>
-            </div>
-            <div class="flex justify-between px-8">
-                <h3 class="text-secondary text-3xl">Highest Score:</h3>
-                <h3 id="playerHighestScore" class="bg-white text-header-shadow px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">4900</h3>
-            </div>
-            <div class="flex justify-between px-8">
-                <h3 class="text-secondary text-3xl">Total Coins:</h3>
-                <div class="flex items-center gap-1 bg-white text-3xl px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">
-                    <span class="noto--coin"></span>
-                    <h3 id="totalCoins" class="">4900</h3>
-                </div>
-            </div>
-            <div class="flex flex-col gap-2">
-                <div class="flex justify-between px-8 text-xl">
-                    <h4 class="text-secondary">Score Coins:</h4>
-                    <div class="flex items-center text-white-shadow gap-1">
-                        <span class="noto--coin"></span>
-                        <p id="scoreCoins">100</p>
-                    </div>
-                </div>
-                <div class="flex justify-between items-center">
-                    <div class="flex justify-between px-8 text-xl">
-                        <h4 class="text-secondary">Size Bonus:</h4>
-                        <div class="flex items-center text-white-shadow gap-1">
-                            <span class="noto--coin"></span>
-                            <p id="gameSizeBonus">100</p>
-                        </div>
-                    </div>
-                    <div class="flex justify-between px-8 text-xl">
-                        <h4 class="text-secondary">Time Bonus:</h4>
-                        <div class="flex items-center text-white-shadow gap-1">
-                            <span class="noto--coin"></span>
-                            <p id="gameTimeBonus">100</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="absolute text-2xl  left-12 bottom-10 flex justify-between">
-            <div class="flex items-center gap-2 ">
-                <i class="fa-solid fa-house text-white"></i>
-                <a href="/" class="text-white rounded-full bg-transparent text-center">Home</a>
-            </div>
-        </div>
-        <div class="absolute text-2xl  right-12 bottom-10 flex justify-between">
-            <div class="flex items-center gap-2 ">
-                <i class="fa-solid fa-rotate-left text-white"></i>
-                <a href="/game" class="text-white rounded-full bg-transparent text-center">Again</a>
-            </div>
-        </div>
-    </div>
+	<div class="w-3/4 relative">
+		<img id="backgroundBoard" src="/images/win_noti_2.png" alt="" />
+		<div class="absolute w-full top-28 left-0 transform-x-[-50%] flex flex-col gap-4">
+			<div class="flex justify-between px-8">
+				<h3 class="text-secondary text-3xl">Your Score:</h3>
+				<h3 id="gameScore" class="bg-white px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">1200</h3>
+			</div>
+			<div class="flex justify-between px-8">
+				<h3 class="text-secondary text-3xl">Highest Score:</h3>
+				<h3 id="playerHighestScore" class="bg-white text-header-shadow px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">4900</h3>
+			</div>
+			<div class="flex justify-between px-8">
+				<h3 class="text-secondary text-3xl">Total Coins:</h3>
+				<div class="flex items-center gap-1 bg-white text-3xl px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">
+					<span class="noto--coin"></span>
+					<h3 id="totalCoins" class="">4900</h3>
+				</div>
+			</div>
+			<div class="flex flex-col gap-2">
+				<div class="flex justify-between px-8 text-xl">
+					<h4 class="text-secondary">Score Coins:</h4>
+					<div class="flex items-center text-white-shadow gap-1">
+						<span class="noto--coin"></span>
+						<p id="scoreCoins">100</p>
+					</div>
+				</div>
+				<div class="flex justify-between items-center">
+					<div class="flex justify-between px-8 text-xl">
+						<h4 class="text-secondary">Size Bonus:</h4>
+						<div class="flex items-center text-white-shadow gap-1">
+							<span class="noto--coin"></span>
+							<p id="gameSizeBonus">100</p>
+						</div>
+					</div>
+					<div class="flex justify-between px-8 text-xl">
+						<h4 class="text-secondary">Time Bonus:</h4>
+						<div class="flex items-center text-white-shadow gap-1">
+							<span class="noto--coin"></span>
+							<p id="gameTimeBonus">100</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="absolute text-2xl left-12 bottom-10 flex justify-between">
+			<div class="flex items-center gap-2">
+				<i class="fa-solid fa-house text-white"></i>
+				<a href="/" class="text-white rounded-full bg-transparent text-center">Home</a>
+			</div>
+		</div>
+		<div class="absolute text-2xl right-12 bottom-10 flex justify-between">
+			<div class="flex items-center gap-2">
+				<i class="fa-solid fa-rotate-left text-white"></i>
+				<a href="/game" class="text-white rounded-full bg-transparent text-center">Again</a>
+			</div>
+		</div>
+	</div>
 </section>
 <section id="notificationChallenge" class="z-20 absolute top-0 left-0 w-full h-full flex justify-center items-center bg-slate-800/50">
-    <div class="w-3/4 relative">
-        <img id="backgroundBoard" src="/images/lose_noti_2.png" alt="">
-        <div class="absolute w-full top-28 left-0 transform-x-[-50%] flex flex-col gap-4">
-            <div class="flex justify-between px-8">
-                <h3 class="text-secondary text-3xl">Win Score:</h3>
-                <h3 id="requiredScore" class="bg-white px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">1200</h3>
-            </div>
-            <div class="flex justify-between px-8">
-                <h3 class="text-secondary text-3xl">Your Score:</h3>
-                <h3 id="playerScore" class="bg-white text-header-shadow px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">4900</h3>
-            </div>
-            <div class="flex justify-between px-8" id="winReward">
-                <h3 class="text-secondary text-3xl">Rewards:</h3>
-                <div class="flex items-center gap-1 bg-white text-3xl px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">
-                    <span class="noto--coin"></span>
-                    <h3 id="rewardCoins" class="">0</h3>
-                </div>
-            </div>
-        </div>
-        <div class="absolute text-2xl  left-12 bottom-10 flex justify-between">
-            <div class="flex items-center gap-2 ">
-                <i class="fa-solid fa-house text-white"></i>
-                <a href="/" class="text-white rounded-full bg-transparent text-center">Home</a>
-            </div>
-        </div>
-        <div class="absolute text-2xl  right-12 bottom-10 flex justify-between">
-            <div class="flex items-center gap-2 ">
-                <i class="fa-solid fa-rotate-left text-white"></i>
-                <a href="/game" class="text-white rounded-full bg-transparent text-center">Again</a>
-            </div>
-        </div>
-    </div>
+	<div class="w-3/4 relative">
+		<img id="backgroundBoard" src="/images/lose_noti_2.png" alt="" />
+		<div class="absolute w-full top-28 left-0 transform-x-[-50%] flex flex-col gap-4">
+			<div class="flex justify-between px-8">
+				<h3 class="text-secondary text-3xl">Win Score:</h3>
+				<h3 id="requiredScore" class="bg-white px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">1200</h3>
+			</div>
+			<div class="flex justify-between px-8">
+				<h3 class="text-secondary text-3xl">Your Score:</h3>
+				<h3 id="playerScore" class="bg-white text-header-shadow px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">4900</h3>
+			</div>
+			<div class="flex justify-between px-8" id="winReward">
+				<h3 class="text-secondary text-3xl">Rewards:</h3>
+				<div class="flex items-center gap-1 bg-white text-3xl px-4 py-0.5 text-header-shadow rounded-xl shadow-1 text-3xl">
+					<span class="noto--coin"></span>
+					<h3 id="rewardCoins" class="">0</h3>
+				</div>
+			</div>
+		</div>
+		<div class="absolute text-2xl left-12 bottom-10 flex justify-between">
+			<div class="flex items-center gap-2">
+				<i class="fa-solid fa-house text-white"></i>
+				<a href="/" class="text-white rounded-full bg-transparent text-center">Home</a>
+			</div>
+		</div>
+		<div class="absolute text-2xl right-12 bottom-10 flex justify-between">
+			<div class="flex items-center gap-2">
+				<i class="fa-solid fa-rotate-left text-white"></i>
+				<a href="/game" class="text-white rounded-full bg-transparent text-center">Again</a>
+			</div>
+		</div>
+	</div>
 </section>
 
 <canvas id="confetti" class="hidden z-10 absolute w-full h-full top-0 left-0"></canvas>
 
 <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
 <script>
-    const confettiSettings = {
-        target: 'confetti',
-        size: 1.8,
-        props: [
-            "circle",
-            "square",
-        ]
-    };
-    const confetti = new ConfettiGenerator(confettiSettings);
-    confetti.render();
+	const confettiSettings = { target: 'confetti', size: 1.8, props: [ "circle", "square", ] }; const confetti = new
+	ConfettiGenerator(confettiSettings); confetti.render();
 </script>

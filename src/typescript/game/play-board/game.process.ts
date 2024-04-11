@@ -1,4 +1,4 @@
-import { ChallengeGameRule, NormalGameRule } from "../../classes/GameRule.js";
+import { ChallengeGameRule, HardCoreGameRule, NormalGameRule } from "../../classes/GameRule.js";
 import { Timer } from "../../ts-utils/Timer.js";
 import { getCurrentGameMode, getCurrentGameTime } from "../../ts-utils/General.js";
 
@@ -8,12 +8,10 @@ const minuteElement: HTMLElement = document.getElementById("minuteValue") as HTM
 const secondElement: HTMLElement = document.getElementById("secondValue") as HTMLElement;
 
 const MapGameRule: Record<string, any> = {
-	normal: new NormalGameRule(),
-	challenge: new ChallengeGameRule(),
+	normal: NormalGameRule,
+	challenge: ChallengeGameRule,
+	hardcore: HardCoreGameRule,
 };
-
-const gameRule = MapGameRule[getCurrentGameMode()];
-gameRule.render();
 
 const handlerStop = () => {
 	let listCards = document.querySelectorAll(".card") as NodeListOf<HTMLElement>;
@@ -29,3 +27,6 @@ const timer = new Timer({
 });
 
 timer.start();
+
+const gameRule = new MapGameRule[getCurrentGameMode()](timer);
+gameRule.render();
