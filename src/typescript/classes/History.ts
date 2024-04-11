@@ -1,6 +1,18 @@
 import { GameMode } from "./../types/Api";
 import { IApiResponse, IHistory } from "../types/Api.js";
 
+const mapGameMode: Record<string, string> = {
+	normal: "NM",
+	challenge: "CL",
+	hardcore: "HC",
+};
+
+const mapBadge: Record<string, string> = {
+	undefined: "",
+	true: "/images/win_badge.png",
+	false: "/images/lose_badge.png",
+};
+
 export class HistoryCard {
 	cardThemeId: string;
 	gameThemeId: string;
@@ -11,8 +23,9 @@ export class HistoryCard {
 	gameScore: number;
 	totalCoins: number;
 	gameMode: GameMode;
+	isWin: boolean;
 
-	constructor({ cardThemeId, gameThemeId, gameSize, gameMode, gameTime, gameTurn, gameScore, createdAt, totalCoins }: IHistory) {
+	constructor({ cardThemeId, gameThemeId, gameSize, gameMode, gameTime, gameTurn, gameScore, createdAt, totalCoins, isWin }: IHistory) {
 		this.cardThemeId = cardThemeId;
 		this.gameThemeId = gameThemeId;
 		this.gameSize = gameSize;
@@ -22,6 +35,7 @@ export class HistoryCard {
 		this.gameScore = gameScore;
 		this.totalCoins = totalCoins;
 		this.gameMode = gameMode;
+		this.isWin = isWin;
 	}
 
 	async getCardThemeImage() {
@@ -56,8 +70,9 @@ export class HistoryCard {
 		let date = new Date(this.createdAt);
 		const time = `${date.toLocaleTimeString("es-AR")} ${date.toLocaleDateString("es-AR")}`;
 		return `<div class="w-full bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] h-max flex justify-between items-center gap-2 p-4 rounded-xl">
-                    <div class="w-1/2 flex flex-col gap-2">
+                    <div class="relative w-1/2 flex flex-col gap-2">
                         <p class="text-sm text-slate-500">${time}</p>
+						${this.isWin !== undefined ? `<img class="absolute right-0 -top-4 w-24" src="${mapBadge[`${this.isWin}`]}" alt="">` : ""}
                         <div class="flex gap-2 items-center">
                             <p class="text-4xl text-header-shadow">${this.gameSize}</p>
                             <p class="text-4xl text-header-shadow">-</p>
@@ -68,6 +83,8 @@ export class HistoryCard {
                                 <p class="text-primary">${this.gameTurn}</p>
                                 <p>turns in</p>
                                 <p class="text-primary">${this.gameTime}s</p>
+                                <p>-</p>
+                                <p class="text-primary">${mapGameMode[this.gameMode]}</p>
                             </div>
                             ${
 								this.totalCoins

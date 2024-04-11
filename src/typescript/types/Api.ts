@@ -65,6 +65,7 @@ export interface IHistory {
 	gameScore: number;
 	gameTurn: number;
 	totalCoins: number;
+	isWin: boolean;
 	createdAt: string;
 	updatedAt: string;
 }

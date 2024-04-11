@@ -6,6 +6,7 @@
 	<div class="w-full flex justify-center items-center gap-8">
 		<button data-button="normal" class="mode-button button-normal text-white rounded-full">Normal</button>
 		<button data-button="challenge" class="mode-button button-normal text-white rounded-full">Challenge</button>
+		<button data-button="hardcore" class="mode-button button-normal text-white rounded-full">HardCore</button>
 	</div>
 	<div class="w-full flex justify-center items-center gap-8">
 		<button id="playGame" class="block w-24 h-24 rounded-full bg-primary">
@@ -14,7 +15,7 @@
 	</div>
 </div>
 
-<div class="absolute w-full top-4 left-4 flex gap-4">
+<div id="streakBoard" class="{{#if isNotLogin}} hidden {{/if}} absolute w-full top-4 left-4 flex gap-4">
 	<div class="shadow-1 w-11/12 p-2 rounded-xl bg-white flex gap-2 justify-between items-start">
 		<div class="flex flex-col justify-center gap-2 items-start w-3/4">
 			<h2>Streak Login</h2>
@@ -37,7 +38,7 @@
 
 </div>
 
-<div class="absolute top-36 right-4">
+<div class="absolute {{#if isNotLogin}} top-4 {{else}} top-36 {{/if}} right-4">
 	<div class="w-full flex justify-center items-center">
 		<button
 			id="directShopButton"
