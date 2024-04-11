@@ -1,7 +1,7 @@
 export const timeConverter = (totalTime) => {
     return {
         second: pad(totalTime % 60),
-        minute: pad(Math.floor(totalTime / 60))
+        minute: pad(Math.floor(totalTime / 60)),
     };
 };
 const pad = (val) => {
@@ -30,11 +30,12 @@ export class Timer {
         console.log("start");
         this.timer = setInterval(this.handleTimer.bind(this), 1000);
     }
-    stop() {
-        this.handlerStop();
+    stop(isExecuteHandler = true) {
+        if (isExecuteHandler) {
+            this.handlerStop();
+        }
         clearInterval(this.timer);
     }
-    ;
     handleTimer() {
         if (this.totalTime > 0) {
             this.totalTime -= 1;

@@ -1,6 +1,6 @@
 import { FetchStatus } from "../types/Api.js";
 import { ShopCardTheme } from "../classes/Card.js";
-import { getListVipCards, getUserId, isOwned } from "../ts-utils/General.js";
+import { getListVipCards, getUserData, getUserId, isOwned } from "../ts-utils/General.js";
 import { handleBuyAction } from "./shop.handle-buy.js";
 const fetchListVipCardThemes = async (sortStyle) => {
     let fetchUrl = "/api/card-themes/vip";
@@ -52,12 +52,18 @@ const showDetails = async (_id) => {
         const frontFace = document.querySelector("#vipDetails .front-face");
         const priceValue = document.querySelector("#vipDetails .price");
         const buttonBuy = document.getElementById("buyButton");
-        if (isOwned(_id, userInventory)) {
+        console.log(getUserData());
+        if (!getUserData()) {
+            buttonBuy.classList.add("hidden");
+        }
+        else if (isOwned(_id, userInventory)) {
+            buttonBuy.classList.remove("hidden");
             buttonBuy.style.pointerEvents = "none";
             buttonBuy.disabled = true;
             buttonBuy.innerHTML = "Owned";
         }
         else {
+            buttonBuy.classList.remove("hidden");
             buttonBuy.style.pointerEvents = "auto";
             buttonBuy.disabled = false;
             buttonBuy.innerHTML = "Buy";

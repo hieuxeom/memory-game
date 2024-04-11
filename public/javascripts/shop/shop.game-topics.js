@@ -1,6 +1,6 @@
 import { FetchStatus } from "../types/Api.js";
 import { ShopGameTopic } from "../classes/Card.js";
-import { getCurrentCardTheme, getListVipGames, getUserId, isOwned } from "../ts-utils/General.js";
+import { getCurrentCardTheme, getListVipGames, getUserData, getUserId, isOwned } from "../ts-utils/General.js";
 import { handleBuyAction } from "./shop.handle-buy.js";
 const fetchListVipGameTopics = async (sortStyle) => {
     let fetchUrl = "/api/game-topics/vip";
@@ -49,12 +49,17 @@ const showDetails = async (_id) => {
     if (vipDetailsContainer) {
         vipDetailsContainer.style.visibility = "visible";
         const buttonBuy = document.getElementById("buyButton");
-        if (isOwned(_id, userInventory)) {
+        if (!getUserData()) {
+            buttonBuy.classList.add("hidden");
+        }
+        else if (isOwned(_id, userInventory)) {
+            buttonBuy.classList.remove("hidden");
             buttonBuy.style.pointerEvents = "none";
             buttonBuy.disabled = true;
             buttonBuy.innerHTML = "Owned";
         }
         else {
+            buttonBuy.classList.remove("hidden");
             buttonBuy.style.pointerEvents = "auto";
             buttonBuy.disabled = false;
             buttonBuy.innerHTML = "Buy";
@@ -76,11 +81,11 @@ const showDetails = async (_id) => {
                 return res.data;
             }
         });
-        Promise.all([getCardTheme, getGameTheme])
-            .then(([cardData, gameData]) => {
+        Promise.all([getCardTheme, getGameTheme]).then(([cardData, gameData]) => {
             const { cardFront } = cardData;
             const { themeData } = gameData;
-            themeDataContainer.innerHTML = themeData.map(({ icon, value }) => {
+            themeDataContainer.innerHTML = themeData
+                .map(({ icon, value }) => {
                 return `<div class="card open relative bg-transparent shadow-lg h-[170px] rounded-lg overflow-hidden">
                                 <div class="bg-transparent card-front w-full h-full">
                                     <div class="bg-transparent">
@@ -91,7 +96,8 @@ const showDetails = async (_id) => {
                                     </div>
                                 </div>
                             </div>`;
-            }).join("");
+            })
+                .join("");
         });
         const userId = getUserId();
         if (userId) {

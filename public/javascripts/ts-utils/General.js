@@ -5,6 +5,7 @@ export const getCurrentGameSize = () => {
     return localStorage.getItem("gameSize");
 };
 export const setGameSize = (size = "4x4") => {
+    setCookie("gameSize", size);
     return localStorage.setItem("gameSize", size);
 };
 export const getCurrentGameMode = () => {
@@ -14,6 +15,7 @@ export const getCurrentGameMode = () => {
     return localStorage.getItem("gameMode");
 };
 export const setGameMode = (gameMode = "normal") => {
+    setCookie("gameMode", gameMode);
     return localStorage.setItem("gameMode", gameMode);
 };
 export const getCurrentGameTime = () => {
@@ -23,6 +25,7 @@ export const getCurrentGameTime = () => {
     return localStorage.getItem("gameTime");
 };
 export const setGameTime = (time = "60") => {
+    setCookie("gameTime", time);
     return localStorage.setItem("gameTime", time);
 };
 export const getCurrentGameTopic = () => {
@@ -32,6 +35,7 @@ export const getCurrentGameTopic = () => {
     return localStorage.getItem("currentGameTopic");
 };
 export const setGameTopic = (gameTopicId) => {
+    setCookie("gameTopic", gameTopicId);
     localStorage.setItem("currentGameTopic", gameTopicId);
 };
 export const getCurrentCardTheme = () => {
@@ -41,9 +45,10 @@ export const getCurrentCardTheme = () => {
     return localStorage.getItem("currentCardTheme");
 };
 export const setCardTheme = (cardThemeId) => {
+    setCookie("gameTopic", cardThemeId);
     localStorage.setItem("currentCardTheme", cardThemeId);
 };
-const getDocumentCookies = () => {
+export const getDocumentCookies = () => {
     const cookies = document.cookie.split(";");
     const mapCookie = new Map();
     cookies.forEach((cookie) => mapCookie.set(cookie.split("=")[0].trim(), cookie.split("=")[1]));
