@@ -31,10 +31,10 @@
 <body>
 <div id="wrapper" class="w-screen h-screen bg-gray flex justify-center items-center">
     <div {{#if containerId}} id={{containerId}} {{/if}}
-                             class="w-full h-screen bg-white relative overflow-hidden"
+                             class="w-full h-screen bg-white relative"
     >
-        <section class="w-full h-full flex gap-4">
-            <div class="w-1/5 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+        <section class="w-full h-full flex justify-end gap-4">
+            <div class="fixed left-0 w-1/6 h-full bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
                 {{> adminHeader title=title buttonBackRef=buttonBackRef}}
                 <div class="w-full flex flex-col justify-center items-center gap-4">
                     <button data-tab="card-themes" class="admin-tab bg-secondary text-xl text-white py-4 px-8 rounded-xl">
@@ -48,7 +48,7 @@
                     </button>
                 </div>
             </div>
-            <main class="w-4/5 flex justify-center w-full h-max relative">
+            <main class="w-5/6 float-right flex justify-center h-max overflow-y-scroll">
                 {{{body}}}
             </main>
         </section>

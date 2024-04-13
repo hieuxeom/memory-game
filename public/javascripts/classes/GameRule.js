@@ -45,8 +45,8 @@ export class GameRule {
         }
         if (next) {
             array.length = length / 2;
-            // return this.shuffleAndSlice([...array, ...array], length, false);
-            return [...array, ...array];
+            return this.shuffleAndSlice([...array, ...array], length, false);
+            // return [...array, ...array];
         }
         else {
             return [...array];

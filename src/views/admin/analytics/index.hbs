@@ -1,5 +1,5 @@
-<main class="w-full flex flex-wrap justify-center rounded-xl">
-	<div class="w-1/2 flex flex-col justify-center items-center gap-4">
+<main class="w-full h-max flex flex-wrap justify-center overflow-auto style-4 rounded-xl">
+	<div class="w-1/2 flex flex-col justify-center items-centerduo">
 		<header>
 			<h3 class="text-3xl text-primary-shadow">Top Game Topics</h3>
 		</header>
@@ -32,6 +32,24 @@
 		</header>
 		<main class="w-3/5 p-2">
 			<canvas class="chart" id="topGameTime"></canvas>
+		</main>
+	</div>
+
+	<div class="w-full flex flex-col justify-center items-center gap-4">
+		<header>
+			<h3 class="text-3xl text-primary-shadow">Highest Game Score By Day</h3>
+		</header>
+		<main class="w-4/5 p-2">
+			<canvas class="chart" id="rangeGameScore"></canvas>
+		</main>
+	</div>
+
+	<div class="w-full flex flex-col justify-center items-center gap-4">
+		<header>
+			<h3 class="text-3xl text-primary-shadow">Highest Game Score All Time</h3>
+		</header>
+		<main class="w-4/5 p-2">
+			<canvas class="chart" id="highestGameScoreFluctuations"></canvas>
 		</main>
 	</div>
 

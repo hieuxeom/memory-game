@@ -2,11 +2,14 @@ import { getGameThemeData as getGameTopicsData } from "./charts/game-topics.char
 import { getCardThemeData as getCardThemesData } from "./charts/card-theme.chart.js";
 import { getGameSizeData as getGameSizesData } from "./charts/game-size.chart.js";
 import { getGameTimeData as getGameTimesData } from "./charts/game-time.chart.js";
+import { getRangeGameScore, getHighestGameScoreAllTime } from "./charts/range-score.chart.js";
 
 const gameTopicContainer = document.getElementById("topGameTopic");
 const cardThemeContainer = document.getElementById("topCardTheme");
 const gameSizeContainer = document.getElementById("topGameSize");
 const gameTimeContainer = document.getElementById("topGameTime");
+const rangeGameScore = document.getElementById("rangeGameScore");
+const highestGameScoreFluctuations = document.getElementById("highestGameScoreFluctuations");
 
 const bgColor1 = "rgba(218, 247, 166, 0.8)";
 const bgColor2 = "rgba(255, 195, 0, 0.8)";
@@ -32,6 +35,15 @@ const doughnutOptions = {
 	},
 };
 
+const lineOptions = {
+	borderColor: bgColor2,
+	scales: {
+		x: {
+			beginAtZero: true,
+		},
+	},
+};
+
 const datalabelsConfig = {
 	color: "#900C3F",
 };
@@ -43,7 +55,7 @@ getGameTopicsData().then(({ labels, data }) => {
 			labels,
 			datasets: [
 				{
-					label: "# Played",
+					label: "Highest Score",
 					data: data,
 					backgroundColor: bgColor1,
 					datalabels: datalabelsConfig,
@@ -110,6 +122,44 @@ getGameTimesData().then(({ labels, data }) => {
 			],
 		},
 		options: doughnutOptions,
+		plugins: [ChartDataLabels],
+	});
+});
+
+getRangeGameScore().then(({ labels, data }) => {
+	new Chart(rangeGameScore, {
+		type: "line",
+		data: {
+			labels,
+			datasets: [
+				{
+					label: "Highest Score Of Days",
+					data: data,
+					backgroundColor: [bgColor1, bgColor2, bgColor3],
+					datalabels: datalabelsConfig,
+				},
+			],
+		},
+		options: lineOptions,
+		plugins: [ChartDataLabels],
+	});
+});
+
+getHighestGameScoreAllTime().then(({ labels, data }) => {
+	new Chart(highestGameScoreFluctuations, {
+		type: "line",
+		data: {
+			labels,
+			datasets: [
+				{
+					label: "Highest Score",
+					data: data,
+					backgroundColor: [bgColor1, bgColor2, bgColor3],
+					datalabels: datalabelsConfig,
+				},
+			],
+		},
+		options: lineOptions,
 		plugins: [ChartDataLabels],
 	});
 });
